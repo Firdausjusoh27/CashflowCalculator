@@ -6,8 +6,93 @@
     android:layout_height="match_parent"
     tools:context=".MainPage">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/cfDetailLayout">
+
+        <LinearLayout
+            android:id="@+id/BSLlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_margin="3dp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="BUY"
+                android:textSize="25dp"
+                android:layout_margin="3dp"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:background="#5E4181"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="SELL"
+                android:textSize="25dp"
+                android:layout_margin="3dp"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:background="#5E4181"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="LOAN"
+                android:textSize="25dp"
+                android:layout_margin="3dp"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:background="#5E4181"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/MPClayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_margin="3dp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Market Action"
+                android:layout_margin="3dp"
+                android:textSize="11dp"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:background="#5E4181"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Pay"
+                android:textSize="11dp"
+                android:layout_margin="3dp"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:background="#5E4181"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Collect"
+                android:textSize="11dp"
+                android:layout_margin="3dp"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:background="#5E4181"/>
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/cfDetailLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -18,7 +103,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
             android:hint="Cash On Hand"
             android:inputType="text"
             android:textColorHint="#462C67"
@@ -28,7 +114,6 @@
             android:layout_width="wrap_content"
             android:layout_height="1dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
             android:background="#462C67"/>
 
         <TextView
@@ -36,7 +121,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
             android:hint="CashFlow"
             android:inputType="text"
             android:textColorHint="#462C67"
@@ -46,7 +132,6 @@
             android:layout_width="wrap_content"
             android:layout_height="1dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
             android:background="#462C67" />
 
         <TextView
@@ -54,8 +139,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
             android:hint="Expenses"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
             android:textColorHint="#462C67"
             android:inputType="text"
             android:textSize="20dp" />
@@ -63,8 +149,7 @@
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="20dp"
             android:background="#462C67"/>
 
         <TextView
@@ -72,7 +157,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
             android:hint="Total Income"
             android:textColorHint="#462C67"
             android:inputType="text"
@@ -81,8 +167,7 @@
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="20dp"
             android:background="#462C67" />
 
         <TextView
@@ -90,7 +175,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
             android:hint="PAYDAY"
             android:inputType="text"
             android:textColorHint="#462C67"
@@ -99,8 +185,7 @@
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="20dp"
             android:background="#462C67" />
 
     </LinearLayout>
