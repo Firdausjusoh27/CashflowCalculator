@@ -6,7 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".MainPage">
 
+
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/cfButton_6">
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressbar"
+            android:layout_margin="30dp"
+            android:progress="30"
+            android:scaleY="5"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cfButton_6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
