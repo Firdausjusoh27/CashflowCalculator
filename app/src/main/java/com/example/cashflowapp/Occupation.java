@@ -5,12 +5,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 public class Occupation extends AppCompatActivity {
 
     private TextView professiontv, dreamtv, auditor;
+    private Button startBtn;
     private String myText;
     static String[] professions = {"Doctor", "Lawyer", "Mechanic", "Nurse", "Police", "Secretary"};
     static String[] dreams = {"Buy a Forest", "Be a Jet-Setter", "African Photo Safari", "Gift of Faith"};
@@ -28,7 +31,8 @@ public class Occupation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_occupation);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setIcon(R.drawable.cash);
+        actionBar.setTitle("  CashFlow Apps");
+        actionBar.setIcon(R.drawable.cash_2);
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
@@ -133,7 +137,16 @@ public class Occupation extends AppCompatActivity {
         });
         //        End -- Alert Dialog for Dream TextView
 
+//        Button Start Navigation
 
+        startBtn = findViewById(R.id.start_button);
+        startBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Occupation.this, MainPage.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
