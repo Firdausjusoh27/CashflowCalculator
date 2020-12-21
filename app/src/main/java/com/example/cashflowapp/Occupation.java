@@ -150,11 +150,4 @@ public class Occupation extends AppCompatActivity {
     }
 
 
-    //    Action Bar for this page
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 }

@@ -1,6 +1,7 @@
 package com.example.cashflowapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,6 +16,11 @@ public class ExpensesPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expenses_page);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("  CashFlow Apps");
+        actionBar.setIcon(R.drawable.cash_2);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
         //        Initialize and assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
