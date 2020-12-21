@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CashFlowApp">
-        <activity android:name=".MainPage"></activity>
+        <activity android:name=".LiabilitiesPage"></activity>
+        <activity android:name=".AssetsPage" />
+        <activity android:name=".ExpensesPage" />
+        <activity android:name=".IncomePage" />
+        <activity android:name=".MainPage" />
         <activity android:name=".Occupation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
