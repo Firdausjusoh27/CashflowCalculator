@@ -9,13 +9,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainPage extends AppCompatActivity {
     private ProgressBar cashPB;
-
+    private TextView textViewProfession, textViewCashOnHand, textViewCashFlow, textViewExpenses, textViewSalary, textViewPayDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,26 @@ public class MainPage extends AppCompatActivity {
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
         cashPB = findViewById(R.id.progressbar);
-        cashPB.setProgress(90);
+//        cashPB.setProgress(90);
+        cashPB.setProgress(0);
+
+        DatabaseHelper dataSource = new DatabaseHelper(this);
+        PlayerInfoRecord playerInfoRecord = dataSource.getPlayerInfo();
+
+        int initTotalExpenses = dataSource.getSumOfExpenses();
+
+        textViewProfession = (TextView)findViewById(R.id.ProfessionTV);
+        textViewProfession.setText(playerInfoRecord.getProfession());
+        textViewCashOnHand = (TextView)findViewById(R.id.CashOnHandTV);
+        textViewCashOnHand.setHint("Cash On Hand: $" + String.format("%,d", playerInfoRecord.getCashOnHand()));
+        textViewCashFlow = (TextView)findViewById(R.id.cashFlowTV);
+        textViewCashFlow.setHint("CashFlow: $0");
+        textViewSalary = (TextView)findViewById(R.id.TotalIncomeTV);
+        textViewSalary.setHint("Total Income: $" + String.format("%,d", playerInfoRecord.getSalary()));
+        textViewExpenses = (TextView)findViewById(R.id.ExpensesTV);
+        textViewExpenses.setHint("Expenses: $" + String.format("%,d", initTotalExpenses));
+        textViewPayDay = (TextView)findViewById(R.id.PaydayTV);
+        textViewPayDay.setHint("PAYDAY: $" + String.format("%,d", (playerInfoRecord.getSalary() - initTotalExpenses)));
 
 //        Initialize and assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);

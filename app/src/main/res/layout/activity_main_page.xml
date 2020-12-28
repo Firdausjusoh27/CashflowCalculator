@@ -13,6 +13,14 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/cfButton_6">
 
+        <TextView
+            android:id="@+id/ProfessionTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="18dp"
+            android:textSize="40dp" />
+
         <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

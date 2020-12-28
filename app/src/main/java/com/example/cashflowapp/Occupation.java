@@ -8,6 +8,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,13 +25,16 @@ public class Occupation extends AppCompatActivity {
     private TextView professiontv, dreamtv, auditor;
     private Button startBtn;
     private String myText;
-    static String[] professions = {"Doctor", "Lawyer", "Mechanic", "Nurse", "Police", "Secretary"};
+    static String[] professions = {"Doctor", "Lawyer", "Mechanic", "Nurse", "Police", "Secretary", "Janitor"};
     static String[] dreams = {"Buy a Forest", "Be a Jet-Setter", "African Photo Safari", "Gift of Faith"};
+
+    DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_occupation);
+        databaseHelper = new DatabaseHelper(this);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("  CashFlow Apps");
         actionBar.setIcon(R.drawable.cash_2);
@@ -143,10 +148,335 @@ public class Occupation extends AppCompatActivity {
         startBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                deletePlayerInfoRecord();
+                savePlayerInfo(v);
+                deleteExpenses();
+                String profession = professiontv.getText().toString();
+                saveExpenses(profession);
                 Intent intent = new Intent(Occupation.this, MainPage.class);
                 startActivity(intent);
             }
         });
+    }
+
+    public void savePlayerInfo(View v) {
+        String profession, dream, auditName;
+        int salary, cashOnHand;
+        profession = professiontv.getText().toString();
+        if(profession.isEmpty()) {
+            professiontv.setError("Please Choose Profession");
+            return;
+        }
+        dream = dreamtv.getText().toString();
+        if(dream.isEmpty()) {
+            dreamtv.setError("Please Choose Dream");
+            return;
+        }
+        auditName = auditor.getText().toString();
+        if(auditName.isEmpty()) {
+            auditor.setError("Please enter auditor name");
+            return;
+        }
+        switch (profession){
+            case "Doctor":
+                salary = 13200;
+                cashOnHand = 3950;
+                break;
+            case "Lawyer":
+                salary = 7500;
+                cashOnHand = 2480;
+                break;
+            case "Mechanic":
+                salary = 2000;
+                cashOnHand = 1390;
+                break;
+            case "Nurse":
+                salary = 3100;
+                cashOnHand = 1600;
+                break;
+            case "Police":
+                salary = 3000;
+                cashOnHand = 1640;
+                break;
+            case "Secretary":
+                salary = 2500;
+                cashOnHand = 1590;
+                break;
+            case "Janitor":
+                salary = 1600;
+                cashOnHand = 1210;
+                break;
+            default:
+                salary = 800;
+                cashOnHand = 1300;
+        }
+        PlayerInfoRecord playerInfoRecord = new PlayerInfoRecord();
+        playerInfoRecord.setProfession(profession);
+        playerInfoRecord.setDream(dream);
+        playerInfoRecord.setAuditName(auditName);
+        playerInfoRecord.setSalary(salary);
+        playerInfoRecord.setCashOnHand(cashOnHand);
+
+        DatabaseHelper playerInfoDataSource = new DatabaseHelper(this);
+        playerInfoDataSource.insertPlayerInfo(playerInfoRecord);
+
+        this.finish();
+    }
+
+    public Integer deletePlayerInfoRecord() {
+        DatabaseHelper playerInfoDataSource = new DatabaseHelper(this);
+        Integer rowDeleted = playerInfoDataSource.deletePlayerInfo();
+
+        this.finish();
+        return rowDeleted;
+    }
+
+    public Integer deleteExpenses() {
+        DatabaseHelper dataSource = new DatabaseHelper(this);
+        Integer rowDeleted = dataSource.deleteAllExpenses();
+
+        this.finish();
+        return rowDeleted;
+    }
+
+    public void saveExpenses(String profession) {
+        ExpensesRecord expensesRecord = new ExpensesRecord();
+        DatabaseHelper dataSource = new DatabaseHelper(this);
+        switch (profession){
+            case "Doctor":
+                expensesRecord.setExpensesType("Taxes");
+                expensesRecord.setExpensesAmount(3420);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Other");
+                expensesRecord.setExpensesAmount(2880);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Car Loan");
+                expensesRecord.setExpensesAmount(380);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Credit Card");
+                expensesRecord.setExpensesAmount(270);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Mortgage");
+                expensesRecord.setExpensesAmount(1900);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Retail Debt");
+                expensesRecord.setExpensesAmount(50);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("School Loan");
+                expensesRecord.setExpensesAmount(750);
+                dataSource.insertExpenses(expensesRecord);
+                break;
+            case "Lawyer":
+                expensesRecord.setExpensesType("Taxes");
+                expensesRecord.setExpensesAmount(1830);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Other");
+                expensesRecord.setExpensesAmount(1650);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Car Loan");
+                expensesRecord.setExpensesAmount(220);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Credit Card");
+                expensesRecord.setExpensesAmount(180);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Mortgage");
+                expensesRecord.setExpensesAmount(1100);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Retail Debt");
+                expensesRecord.setExpensesAmount(50);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("School Loan");
+                expensesRecord.setExpensesAmount(390);
+                dataSource.insertExpenses(expensesRecord);
+                break;
+            case "Mechanic":
+                expensesRecord.setExpensesType("Taxes");
+                expensesRecord.setExpensesAmount(360);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Other");
+                expensesRecord.setExpensesAmount(450);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Car Loan");
+                expensesRecord.setExpensesAmount(60);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Credit Card");
+                expensesRecord.setExpensesAmount(60);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Mortgage");
+                expensesRecord.setExpensesAmount(300);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Retail Debt");
+                expensesRecord.setExpensesAmount(50);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("School Loan");
+                expensesRecord.setExpensesAmount(0);
+                dataSource.insertExpenses(expensesRecord);
+                break;
+            case "Nurse":
+                expensesRecord.setExpensesType("Taxes");
+                expensesRecord.setExpensesAmount(600);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Other");
+                expensesRecord.setExpensesAmount(710);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Car Loan");
+                expensesRecord.setExpensesAmount(100);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Credit Card");
+                expensesRecord.setExpensesAmount(90);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Mortgage");
+                expensesRecord.setExpensesAmount(400);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Retail Debt");
+                expensesRecord.setExpensesAmount(50);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("School Loan");
+                expensesRecord.setExpensesAmount(30);
+                dataSource.insertExpenses(expensesRecord);
+                break;
+            case "Police":
+                expensesRecord.setExpensesType("Taxes");
+                expensesRecord.setExpensesAmount(580);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Other");
+                expensesRecord.setExpensesAmount(690);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Car Loan");
+                expensesRecord.setExpensesAmount(100);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Credit Card");
+                expensesRecord.setExpensesAmount(60);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Mortgage");
+                expensesRecord.setExpensesAmount(400);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Retail Debt");
+                expensesRecord.setExpensesAmount(50);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("School Loan");
+                expensesRecord.setExpensesAmount(0);
+                dataSource.insertExpenses(expensesRecord);
+                break;
+            case "Secretary":
+                expensesRecord.setExpensesType("Taxes");
+                expensesRecord.setExpensesAmount(460);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Other");
+                expensesRecord.setExpensesAmount(570);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Car Loan");
+                expensesRecord.setExpensesAmount(80);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Credit Card");
+                expensesRecord.setExpensesAmount(60);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Mortgage");
+                expensesRecord.setExpensesAmount(400);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Retail Debt");
+                expensesRecord.setExpensesAmount(50);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("School Loan");
+                expensesRecord.setExpensesAmount(0);
+                dataSource.insertExpenses(expensesRecord);
+                break;
+            case "Janitor":
+                expensesRecord.setExpensesType("Taxes");
+                expensesRecord.setExpensesAmount(280);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Other");
+                expensesRecord.setExpensesAmount(300);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Car Loan");
+                expensesRecord.setExpensesAmount(60);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Credit Card");
+                expensesRecord.setExpensesAmount(60);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Mortgage");
+                expensesRecord.setExpensesAmount(200);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Retail Debt");
+                expensesRecord.setExpensesAmount(50);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("School Loan");
+                expensesRecord.setExpensesAmount(0);
+                dataSource.insertExpenses(expensesRecord);
+                break;
+            default:
+                expensesRecord.setExpensesType("Taxes");
+                expensesRecord.setExpensesAmount(300);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Other");
+                expensesRecord.setExpensesAmount(300);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Car Loan");
+                expensesRecord.setExpensesAmount(60);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Credit Card");
+                expensesRecord.setExpensesAmount(60);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Mortgage");
+                expensesRecord.setExpensesAmount(200);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("Retail Debt");
+                expensesRecord.setExpensesAmount(50);
+                dataSource.insertExpenses(expensesRecord);
+
+                expensesRecord.setExpensesType("School Loan");
+                expensesRecord.setExpensesAmount(0);
+                dataSource.insertExpenses(expensesRecord);
+        }
+
+        this.finish();
     }
 
 
