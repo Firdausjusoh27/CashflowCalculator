@@ -262,7 +262,182 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return totalExpenses;
     }
 
+//    table stock_mutual_fund_cod
+    public void  insertStockMutualFundCOD(StockMutualFundCODRecord stockMutualFundCODRecord) {
+        ContentValues values = new ContentValues();
+        values.put(StockMutualFundCOD.StockMFundCOD.COLUMN_STOCK_TYPE, stockMutualFundCODRecord.getStockType());
+        values.put(StockMutualFundCOD.StockMFundCOD.COLUMN_BUYING_PRICE, stockMutualFundCODRecord.getBuyingPrice());
+        values.put(StockMutualFundCOD.StockMFundCOD.COLUMN_NUM_SHARES, stockMutualFundCODRecord.getNumOfShares());
+        values.put(StockMutualFundCOD.StockMFundCOD.COLUMN_DIVIDENDS, stockMutualFundCODRecord.getMonthlyDividends());
+        values.put(StockMutualFundCOD.StockMFundCOD.COLUMN_INTEREST, stockMutualFundCODRecord.getMonthlyInterest());
 
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.insert(StockMutualFundCOD.StockMFundCOD.TABLE_NAME, null, values);
+
+        database.close();
+    }
+
+    public boolean updateStockMutualFundCOD(StockMutualFundCODRecord stockMutualFundCODRecord) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(StockMutualFundCOD.StockMFundCOD.COLUMN_STOCK_TYPE, stockMutualFundCODRecord.getStockType());
+        values.put(StockMutualFundCOD.StockMFundCOD.COLUMN_BUYING_PRICE, stockMutualFundCODRecord.getBuyingPrice());
+        values.put(StockMutualFundCOD.StockMFundCOD.COLUMN_NUM_SHARES, stockMutualFundCODRecord.getNumOfShares());
+        values.put(StockMutualFundCOD.StockMFundCOD.COLUMN_DIVIDENDS, stockMutualFundCODRecord.getMonthlyDividends());
+        values.put(StockMutualFundCOD.StockMFundCOD.COLUMN_INTEREST, stockMutualFundCODRecord.getMonthlyInterest());
+        db.update(StockMutualFundCOD.StockMFundCOD.TABLE_NAME, values, "id = ?", new String[] { String.valueOf(stockMutualFundCODRecord.getId()) });
+        return true;
+    }
+
+    public Integer deleteStockMutualFundCOD(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Integer rowDeleted = db.delete(StockMutualFundCOD.StockMFundCOD.TABLE_NAME, "id = ?", new String[] { String.valueOf(id) });
+        return rowDeleted;
+    }
+
+    public Integer deleteAllStockMutualFundCOD() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Integer rowDeleted = db.delete(StockMutualFundCOD.StockMFundCOD.TABLE_NAME, "", new String[] { });
+        return rowDeleted;
+    }
+
+    //    table real_estate
+    public void  insertRealEstate(RealEstatesRecord realEstatesRecord) {
+        ContentValues values = new ContentValues();
+        values.put(RealEstates.RealEstate.COLUMN_REAL_ESTATE_TYPE, realEstatesRecord.getRealEstateType());
+        values.put(RealEstates.RealEstate.COLUMN_COST, realEstatesRecord.getCost());
+        values.put(RealEstates.RealEstate.COLUMN_DOWN_PAYMENT, realEstatesRecord.getDownPayment());
+        values.put(RealEstates.RealEstate.COLUMN_CASH_FLOW, realEstatesRecord.getCashFlow());
+        values.put(RealEstates.RealEstate.COLUMN_NUM_OF_UNITS, realEstatesRecord.getNumberOfUnits());
+
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.insert(RealEstates.RealEstate.TABLE_NAME, null, values);
+
+        database.close();
+    }
+
+    public boolean updateRealEstate(RealEstatesRecord realEstatesRecord) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(RealEstates.RealEstate.COLUMN_REAL_ESTATE_TYPE, realEstatesRecord.getRealEstateType());
+        values.put(RealEstates.RealEstate.COLUMN_COST, realEstatesRecord.getCost());
+        values.put(RealEstates.RealEstate.COLUMN_DOWN_PAYMENT, realEstatesRecord.getDownPayment());
+        values.put(RealEstates.RealEstate.COLUMN_CASH_FLOW, realEstatesRecord.getCashFlow());
+        values.put(RealEstates.RealEstate.COLUMN_NUM_OF_UNITS, realEstatesRecord.getNumberOfUnits());
+        db.update(RealEstates.RealEstate.TABLE_NAME, values, "id = ?", new String[] { String.valueOf(realEstatesRecord.getId()) });
+        return true;
+    }
+
+    public Integer deleteRealEstate(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Integer rowDeleted = db.delete(RealEstates.RealEstate.TABLE_NAME, "id = ?", new String[] { String.valueOf(id) });
+        return rowDeleted;
+    }
+
+    public Integer deleteAllRealEstates() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Integer rowDeleted = db.delete(RealEstates.RealEstate.TABLE_NAME, "", new String[] { });
+        return rowDeleted;
+    }
+
+    //    table business
+    public void  insertBusiness(BusinessRecord businessRecord) {
+        ContentValues values = new ContentValues();
+        values.put(Businesses.Business.COLUMN_BUSINESS_TYPE, businessRecord.getBusinessType());
+        values.put(Businesses.Business.COLUMN_COST, businessRecord.getCost());
+        values.put(Businesses.Business.COLUMN_DOWN_PAYMENT, businessRecord.getDownPayment());
+        values.put(Businesses.Business.COLUMN_CASH_FLOW, businessRecord.getCashFlow());
+
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.insert(Businesses.Business.TABLE_NAME, null, values);
+
+        database.close();
+    }
+
+    public boolean updateBusiness(BusinessRecord businessRecord) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Businesses.Business.COLUMN_BUSINESS_TYPE, businessRecord.getBusinessType());
+        values.put(Businesses.Business.COLUMN_COST, businessRecord.getCost());
+        values.put(Businesses.Business.COLUMN_DOWN_PAYMENT, businessRecord.getDownPayment());
+        values.put(Businesses.Business.COLUMN_CASH_FLOW, businessRecord.getCashFlow());
+        db.update(Businesses.Business.TABLE_NAME, values, "id = ?", new String[] { String.valueOf(businessRecord.getId()) });
+
+        db.close();
+
+        return true;
+    }
+
+    public Integer deleteBusiness(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Integer rowDeleted = db.delete(Businesses.Business.TABLE_NAME, "id = ?", new String[] { String.valueOf(id) });
+        return rowDeleted;
+    }
+
+    public Integer deleteAllBusinesses() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Integer rowDeleted = db.delete(Businesses.Business.TABLE_NAME, "", new String[] { });
+        return rowDeleted;
+    }
+
+    //    table gold
+    public void  insertGold(GoldRecord goldRecord) {
+        ContentValues values = new ContentValues();
+        values.put(Golds.Gold.COLUMN_GOLD_TYPE, goldRecord.getGoldType());
+
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.insert(Golds.Gold.TABLE_NAME, null, values);
+
+        database.close();
+    }
+
+    public Integer deleteGold(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Integer rowDeleted = db.delete(Golds.Gold.TABLE_NAME, "id = ?", new String[] { String.valueOf(id) });
+        return rowDeleted;
+    }
+
+    public Integer deleteAllGolds() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Integer rowDeleted = db.delete(Golds.Gold.TABLE_NAME, "", new String[] { });
+        return rowDeleted;
+    }
+
+    //    table liability
+    public void  insertLiability(LiabilityRecord liabilityRecord) {
+        ContentValues values = new ContentValues();
+        values.put(Liabilities.Liability.COLUMN_LOAN_TYPE, liabilityRecord.getLoanType());
+        values.put(Liabilities.Liability.COLUMN_LOAN_AMOUNT, liabilityRecord.getLoanAmount());
+
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.insert(Liabilities.Liability.TABLE_NAME, null, values);
+
+        database.close();
+    }
+
+    public boolean updateLiability(LiabilityRecord liabilityRecord) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Liabilities.Liability.COLUMN_LOAN_TYPE, liabilityRecord.getLoanType());
+        values.put(Liabilities.Liability.COLUMN_LOAN_AMOUNT, liabilityRecord.getLoanAmount());
+        db.update(Liabilities.Liability.TABLE_NAME, values, "id = ?", new String[] { String.valueOf(liabilityRecord.getId()) });
+
+        db.close();
+
+        return true;
+    }
+
+    public Integer deleteLiability(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Integer rowDeleted = db.delete(Liabilities.Liability.TABLE_NAME, "id = ?", new String[] { String.valueOf(id) });
+        return rowDeleted;
+    }
+
+    public Integer deleteAllLiabilities() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Integer rowDeleted = db.delete(Liabilities.Liability.TABLE_NAME, "", new String[] { });
+        return rowDeleted;
+    }
 
 //    public List<UserRecord> getAllUsers() {
 //        List<UserRecord> records = new ArrayList<>();

@@ -7,8 +7,8 @@
     tools:context=".AssetsPage">
 
 
-
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -18,8 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.067"
         tools:ignore="MissingConstraints" />
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
@@ -32,5 +32,68 @@
         app:menu="@menu/navigation_menu"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" />
+
+<!--    <EditText-->
+<!--        android:id="@+id/assetType"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="77dp"-->
+<!--        android:layout_marginEnd="102dp"-->
+<!--        android:layout_marginRight="102dp"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="text"-->
+<!--        android:text="Type"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/buyingPrice"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="39dp"-->
+<!--        android:layout_marginEnd="96dp"-->
+<!--        android:layout_marginRight="96dp"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="number"-->
+<!--        android:text="Buying Price"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/assetType" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/numOfShares"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="34dp"-->
+<!--        android:layout_marginEnd="99dp"-->
+<!--        android:layout_marginRight="99dp"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="number"-->
+<!--        android:text="Num Of Shares"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/buyingPrice" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/monthlyDividends"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="32dp"-->
+<!--        android:layout_marginEnd="93dp"-->
+<!--        android:layout_marginRight="93dp"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="number"-->
+<!--        android:text="Monthly Dividends"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/numOfShares" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/nextButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:layout_marginEnd="158dp"-->
+<!--        android:layout_marginRight="158dp"-->
+<!--        android:text="Next"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/monthlyDividends" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
