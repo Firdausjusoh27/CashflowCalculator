@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CashFlowApp">
+        <activity android:name=".StockMutualFundCODBuyPage"></activity>
         <activity android:name=".LiabilitiesPage" />
         <activity android:name=".AssetsPage" />
         <activity android:name=".ExpensesPage" />

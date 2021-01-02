@@ -2,6 +2,7 @@ package com.example.cashflowapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ObjectAnimator;
@@ -9,15 +10,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainPage extends AppCompatActivity {
     private ProgressBar cashPB;
     private TextView textViewProfession, textViewCashOnHand, textViewCashFlow, textViewExpenses, textViewSalary, textViewPayDay;
+    private Button buyBtn;
+    static String[] assetTypeList = {"Stock", "Real Estate", "Business", "Gold"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,19 +45,20 @@ public class MainPage extends AppCompatActivity {
         PlayerInfoRecord playerInfoRecord = dataSource.getPlayerInfo();
 
         int initTotalExpenses = dataSource.getSumOfExpenses();
+        int totalCashFlow = dataSource.getCashFlow();
 
         textViewProfession = (TextView)findViewById(R.id.ProfessionTV);
         textViewProfession.setText(playerInfoRecord.getProfession());
         textViewCashOnHand = (TextView)findViewById(R.id.CashOnHandTV);
         textViewCashOnHand.setHint("Cash On Hand: $" + String.format("%,d", playerInfoRecord.getCashOnHand()));
         textViewCashFlow = (TextView)findViewById(R.id.cashFlowTV);
-        textViewCashFlow.setHint("CashFlow: $0");
+        textViewCashFlow.setHint("CashFlow: $" + String.format("%,d", totalCashFlow));
         textViewSalary = (TextView)findViewById(R.id.TotalIncomeTV);
-        textViewSalary.setHint("Total Income: $" + String.format("%,d", playerInfoRecord.getSalary()));
+        textViewSalary.setHint("Total Income: $" + String.format("%,d", (playerInfoRecord.getSalary() + totalCashFlow)));
         textViewExpenses = (TextView)findViewById(R.id.ExpensesTV);
         textViewExpenses.setHint("Expenses: $" + String.format("%,d", initTotalExpenses));
         textViewPayDay = (TextView)findViewById(R.id.PaydayTV);
-        textViewPayDay.setHint("PAYDAY: $" + String.format("%,d", (playerInfoRecord.getSalary() - initTotalExpenses)));
+        textViewPayDay.setHint("PAYDAY: $" + String.format("%,d", (playerInfoRecord.getSalary() - initTotalExpenses + totalCashFlow)));
 
 //        Initialize and assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
@@ -89,8 +99,34 @@ public class MainPage extends AppCompatActivity {
             }
         });
 
+        buyBtn = findViewById(R.id.buyButton);
+        buyBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                final ListView listView = new ListView(MainPage.this);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainPage.this, android.R.layout.simple_list_item_1, assetTypeList);
+                listView.setAdapter(adapter);
+                AlertDialog.Builder prodialog = new AlertDialog.Builder(MainPage.this);
+                prodialog.setCancelable(true);
+                prodialog.setView(listView);
+                final AlertDialog dialog = prodialog.create();
 
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selectedAssetType = adapter.getItem(position);
+                        if (selectedAssetType == "Stock") {
+                            Intent intent = new Intent(MainPage.this, StockMutualFundCODBuyPage.class);
+                            startActivity(intent);
+                        }
+                        dialog.dismiss();
 
+                    }
+                });
+
+                dialog.show();
+            }
+        });
 
 
     }

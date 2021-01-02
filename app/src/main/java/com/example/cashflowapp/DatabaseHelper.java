@@ -180,7 +180,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(PlayerInfo.Player.COLUMN_PROFESSION, playerInfoRecord.getProfession());
         values.put(PlayerInfo.Player.COLUMN_DREAM, playerInfoRecord.getDream());
         values.put(PlayerInfo.Player.COLUMN_AUDIT_NAME, playerInfoRecord.getAuditName());
-        values.put(PlayerInfo.Player.COLUMN_SALARY, playerInfoRecord.getProfession());
+        values.put(PlayerInfo.Player.COLUMN_SALARY, playerInfoRecord.getSalary());
         values.put(PlayerInfo.Player.COLUMN_CASH_ON_HAND, playerInfoRecord.getCashOnHand());
         db.update(PlayerInfo.Player.TABLE_NAME, values, "profession = ?", new String[] { playerInfoRecord.getProfession() });
         return true;
@@ -201,7 +201,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         cursor.moveToFirst();
 
-        System.out.println("get profession -> "+cursor.getString(0));
         record.setProfession(cursor.getString(0));
         record.setDream(cursor.getString(1));
         record.setAuditName(cursor.getString(2));
@@ -437,6 +436,51 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Integer rowDeleted = db.delete(Liabilities.Liability.TABLE_NAME, "", new String[] { });
         return rowDeleted;
+    }
+
+    public int getCashFlow() {
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        Cursor stock2BIGCursor = database.query(StockMutualFundCOD.StockMFundCOD.TABLE_NAME, stockMFundCodAllColumn, "stock_type = ?",
+                new String[] { "2BIG" }, null, null, null);
+        Cursor stockCoDCursor = database.query(StockMutualFundCOD.StockMFundCOD.TABLE_NAME, stockMFundCodAllColumn, "stock_type = ?",
+                new String[] { "Certificate of Deposit" }, null, null, null);
+        Cursor realEstateCursor = database.query(RealEstates.RealEstate.TABLE_NAME, realEstateAllColumn, null,
+                null, null, null, null);
+        Cursor businessCursor = database.query(Businesses.Business.TABLE_NAME, businessAllColumn, null,
+                null, null, null, null);
+
+        int totalCashFlow = 0;
+
+        stock2BIGCursor.moveToFirst();
+
+        while(!stock2BIGCursor.isAfterLast()) {
+            totalCashFlow += stock2BIGCursor.getInt(4);
+            stock2BIGCursor.moveToNext();
+        }
+
+        stockCoDCursor.moveToFirst();
+
+        while(!stockCoDCursor.isAfterLast()) {
+            totalCashFlow += stockCoDCursor.getInt(5);
+            stockCoDCursor.moveToNext();
+        }
+
+        realEstateCursor.moveToFirst();
+
+        while(!realEstateCursor.isAfterLast()) {
+            totalCashFlow += realEstateCursor.getInt(4);
+            realEstateCursor.moveToNext();
+        }
+
+        businessCursor.moveToFirst();
+
+        while(!businessCursor.isAfterLast()) {
+            totalCashFlow += businessCursor.getInt(4);
+            businessCursor.moveToNext();
+        }
+
+        return totalCashFlow;
     }
 
 //    public List<UserRecord> getAllUsers() {

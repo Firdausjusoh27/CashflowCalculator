@@ -7,9 +7,9 @@ public class PlayerInfoRecord {
     private int salary;
     private int cashOnHand;
 
-    public String getProfession() { System.out.println("profession -> "+profession); return profession; }
+    public String getProfession() { return profession; }
 
-    public void setProfession(String profession) { System.out.println("String profession -> "+profession); this.profession = profession; }
+    public void setProfession(String profession) { this.profession = profession; }
 
     public String getDream() { return dream; }
 
