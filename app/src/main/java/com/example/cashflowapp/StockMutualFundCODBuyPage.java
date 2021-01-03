@@ -19,7 +19,8 @@ import android.widget.Toast;
 
 public class StockMutualFundCODBuyPage extends AppCompatActivity {
 
-    private TextView stocktypetv, buyingpricetv, numberofsharetv, monthlydividendtv, monthlyinteresttv, dividendlabeltv, interestlabeltv, totalpricetv, cashonhandtv;
+    private TextView stocktypetv, dividendlabeltv, interestlabeltv, totalpricetv, cashonhandtv;
+    private EditText buyingpricetv, numberofsharetv, monthlydividendtv, monthlyinteresttv;
     private Button buyStockBtn;
     static String[] stockTypeList = {"2BIG", "Certificate of Deposit", "GRO4US", "OK4U", "ON2U", "MYT4U"};
 

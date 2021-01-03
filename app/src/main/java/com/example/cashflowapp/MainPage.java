@@ -27,9 +27,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainPage extends AppCompatActivity {
     private ProgressBar cashPB;
     private TextView textViewProfession, textViewCashOnHand, textViewCashFlow, textViewExpenses, textViewSalary, textViewPayDay;
-    private Button buyBtn, collectBtn;
+    private Button buyBtn, loanBtn, collectBtn;
     static String[] assetTypeList = {"Stock", "Real Estate", "Business", "Gold"};
     static String[] collectTypeList = {"Collect Money", "PAYDAY"};
+    static String[] loanActionList = {"Take Out Loans", "Pay Loans"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +132,39 @@ public class MainPage extends AppCompatActivity {
                             Intent intent = new Intent(MainPage.this, GoldBuyPage.class);
                             startActivity(intent);
                         }
+                        dialog.dismiss();
+
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+
+
+        loanBtn = findViewById(R.id.loanButton);
+        loanBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                final ListView listView = new ListView(MainPage.this);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainPage.this, android.R.layout.simple_list_item_1, loanActionList);
+                listView.setAdapter(adapter);
+                AlertDialog.Builder prodialog = new AlertDialog.Builder(MainPage.this);
+                prodialog.setCancelable(true);
+                prodialog.setView(listView);
+                final AlertDialog dialog = prodialog.create();
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selectedLoanAction = adapter.getItem(position);
+                        Intent intent;
+                        if (selectedLoanAction.equals("Take Out Loans")) {
+                            intent = new Intent(MainPage.this, TakeOutLoanPage.class);
+                        } else {
+                            intent = new Intent(MainPage.this, RealEstateBuyPage.class);
+                        }
+                        startActivity(intent);
                         dialog.dismiss();
 
                     }

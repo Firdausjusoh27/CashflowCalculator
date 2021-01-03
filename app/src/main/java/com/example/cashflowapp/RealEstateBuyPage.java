@@ -10,13 +10,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class RealEstateBuyPage extends AppCompatActivity {
 
-    private TextView realestatetypetv, costtv, downpaymenttv, cashflowtv, numberofunitstv, numofunitlabeltv, cashonhandtv;
+    private TextView realestatetypetv, numofunitlabeltv, cashonhandtv;
+    private EditText costtv, downpaymenttv, cashflowtv, numberofunitstv;
     private Button buyRealEstateBtn;
     static String[] realEstateTypeList = {"Condo 2Br/1Ba", "House 3Br/2Ba", "Duplex", "4-plex", "8-plex", "Apartment Complex", "Land - 10 Acres", "Land - 20 Acres"};
 

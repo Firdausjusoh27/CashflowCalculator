@@ -10,13 +10,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class BusinessBuyPage extends AppCompatActivity {
 
-    private TextView businesstypetv, costtv, downpaymenttv, cashflowtv, cashonhandtv;
+    private TextView businesstypetv, cashonhandtv;
+    private EditText costtv, downpaymenttv, cashflowtv;
     private Button buyBusinessBtn;
     static String[] businessTypeList = {"Auto Dealer", "Auto Wash", "Bed and Breakfast", "Car Wash", "Coin Telephone", "Doctor Office", "Laundromat", "Pinball Machines",
     "Pizza Chain", "Pizza Franchise", "Sandwich Shop", "Shopping Mall", "Software Company", "Widget Company"};

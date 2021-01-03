@@ -261,6 +261,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return totalExpenses;
     }
 
+    public boolean getBankLoanExistence() {
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        Cursor cursor = database.query(Expenses.Expense.TABLE_NAME, expensesAllColumn, null,
+                null, null, null, null);
+
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()) {
+            String expensesType = cursor.getString(1);
+            if(expensesType.equals("Bank Loan")) {
+                return true;
+            }
+            cursor.moveToNext();
+        }
+        return false;
+    }
+
+    public ExpensesRecord getBankLoanExpenses() {
+        SQLiteDatabase database = this.getReadableDatabase();
+        ExpensesRecord record = new ExpensesRecord();
+
+        Cursor cursor = database.query(Expenses.Expense.TABLE_NAME, expensesAllColumn, "expenses_type = ?",
+                new String[] { "Bank Loan" }, null, null, null);
+
+        cursor.moveToFirst();
+
+        record.setId(cursor.getInt(0));
+        record.setExpensesType(cursor.getString(1));
+        record.setExpensesAmount(cursor.getInt(2));
+        return record;
+    }
+
 //    table stock_mutual_fund_cod
     public void  insertStockMutualFundCOD(StockMutualFundCODRecord stockMutualFundCODRecord) {
         ContentValues values = new ContentValues();
@@ -436,6 +469,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Integer rowDeleted = db.delete(Liabilities.Liability.TABLE_NAME, "", new String[] { });
         return rowDeleted;
+    }
+
+    public boolean getLiabilityBankLoanExistence() {
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        Cursor cursor = database.query(Liabilities.Liability.TABLE_NAME, liabilitiesAllColumn, null,
+                null, null, null, null);
+
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()) {
+            String loanType = cursor.getString(1);
+            if(loanType.equals("Bank Loan")) {
+                return true;
+            }
+            cursor.moveToNext();
+        }
+        return false;
+    }
+
+    public LiabilityRecord getLiabilityBankLoan() {
+        SQLiteDatabase database = this.getReadableDatabase();
+        LiabilityRecord record = new LiabilityRecord();
+
+        Cursor cursor = database.query(Liabilities.Liability.TABLE_NAME, liabilitiesAllColumn, "loan_type = ?",
+                new String[] { "Bank Loan" }, null, null, null);
+
+        cursor.moveToFirst();
+
+        record.setId(cursor.getInt(0));
+        record.setLoanType(cursor.getString(1));
+        record.setLoanAmount(cursor.getInt(2));
+        return record;
     }
 
     public int getCashFlow() {
