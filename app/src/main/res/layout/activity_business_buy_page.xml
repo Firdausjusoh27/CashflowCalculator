@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".StockMutualFundCODBuyPage">
+    tools:context=".BusinessBuyPage">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:text="Stock / Mutual Fund / CoD Purchasing"
+        android:text="Business Purchasing"
         android:textColor="@color/black"
         android:textSize="20dp" />
 
@@ -28,11 +28,11 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:textColor="#462C67"
-        android:hint="Stock Type:"
+        android:hint="Business Type:"
         android:textSize="15dp" />
 
     <TextView
-        android:id="@+id/stockTypeTV"
+        android:id="@+id/businessTypeTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
@@ -55,11 +55,11 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:textColor="#462C67"
-        android:hint="Today's Price:"
+        android:hint="Cost:"
         android:textSize="15dp" />
 
     <EditText
-        android:id="@+id/buyingPriceTV"
+        android:id="@+id/businessCostTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
@@ -74,11 +74,11 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:textColor="#462C67"
-        android:hint="Number of shares:"
+        android:hint="Down Payment:"
         android:textSize="15dp" />
 
     <EditText
-        android:id="@+id/numOfSharesTV"
+        android:id="@+id/businessDownPaymentTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
@@ -88,61 +88,26 @@
         android:textSize="20dp" />
 
     <TextView
-        android:id="@+id/dividendLabelView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:textColor="#462C67"
-        android:hint="Monthly Dividend:"
-        android:visibility="gone"
+        android:hint="Cash Flow:"
         android:textSize="15dp" />
 
     <EditText
-        android:id="@+id/monthlyDividendTV"
+        android:id="@+id/businessCashFlowTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="5dp"
         android:ems="10"
-        android:inputType="number"
-        android:visibility="gone"
+        android:inputType="numberSigned"
         android:textSize="20dp" />
 
     <TextView
-        android:id="@+id/interestLabelView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:textColor="#462C67"
-        android:hint="Monthly Interest:"
-        android:visibility="gone"
-        android:textSize="15dp" />
-
-    <EditText
-        android:id="@+id/monthlyInterestTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:inputType="number"
-        android:visibility="gone"
-        android:textSize="20dp" />
-
-    <TextView
-        android:id="@+id/totalPriceLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:textColor="#462C67"
-        android:hint="Total Price: $0"
-        android:textSize="15dp" />
-
-    <TextView
-        android:id="@+id/cashOnHandLabel"
+        android:id="@+id/businessCashOnHandLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
@@ -159,7 +124,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/buy_button"
+            android:id="@+id/business_buy_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"

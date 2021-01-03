@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 public class StockMutualFundCODBuyPage extends AppCompatActivity {
 
-    private TextView stocktypetv, buyingpricetv, numberofsharetv, monthlydividendtv, monthlyinteresttv, dividendlabeltv, interestlabeltv, totalpricetv;
+    private TextView stocktypetv, buyingpricetv, numberofsharetv, monthlydividendtv, monthlyinteresttv, dividendlabeltv, interestlabeltv, totalpricetv, cashonhandtv;
     private Button buyStockBtn;
     static String[] stockTypeList = {"2BIG", "Certificate of Deposit", "GRO4US", "OK4U", "ON2U", "MYT4U"};
 
@@ -44,6 +44,10 @@ public class StockMutualFundCODBuyPage extends AppCompatActivity {
         dividendlabeltv = findViewById(R.id.dividendLabelView);
         interestlabeltv = findViewById(R.id.interestLabelView);
         totalpricetv = findViewById(R.id.totalPriceLabel);
+        cashonhandtv = findViewById(R.id.cashOnHandLabel);
+
+        int cashOnHand = databaseHelper.getPlayerInfo().getCashOnHand();
+        cashonhandtv.setHint("Cash on Hand: $"+cashOnHand);
 
 
         //        Start -- Alert Dialog for Profession TextView
@@ -133,9 +137,24 @@ public class StockMutualFundCODBuyPage extends AppCompatActivity {
         buyStockBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                saveStock(v);
-                Intent intent = new Intent(StockMutualFundCODBuyPage.this, MainPage.class);
-                startActivity(intent);
+                int buyingPrice = 0;
+                int numberOfShares = 0;
+                int totalPrice;
+                if (buyingpricetv.getText().toString().isEmpty() || numberofsharetv.getText().toString().isEmpty()) {
+                    buyingPrice = 0;
+                    numberOfShares = 0;
+                } else {
+                    buyingPrice = Integer.parseInt(buyingpricetv.getText().toString());
+                    numberOfShares = Integer.parseInt(numberofsharetv.getText().toString());
+                }
+                totalPrice = buyingPrice * numberOfShares;
+                if (cashOnHand >= totalPrice) {
+                    saveStock(v);
+                    Intent intent = new Intent(StockMutualFundCODBuyPage.this, MainPage.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(StockMutualFundCODBuyPage.this, "Cash on hand not enough", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
