@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -294,6 +295,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return record;
     }
 
+    public ExpensesRecord getExpensesByExpensesType(String expensesTye) {
+        SQLiteDatabase database = this.getReadableDatabase();
+        ExpensesRecord record = new ExpensesRecord();
+
+        Cursor cursor = database.query(Expenses.Expense.TABLE_NAME, expensesAllColumn, "expenses_type = ?",
+                new String[] { expensesTye }, null, null, null);
+
+        cursor.moveToFirst();
+
+        record.setId(cursor.getInt(0));
+        record.setExpensesType(cursor.getString(1));
+        record.setExpensesAmount(cursor.getInt(2));
+        return record;
+    }
+
 //    table stock_mutual_fund_cod
     public void  insertStockMutualFundCOD(StockMutualFundCODRecord stockMutualFundCODRecord) {
         ContentValues values = new ContentValues();
@@ -502,6 +518,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         record.setLoanType(cursor.getString(1));
         record.setLoanAmount(cursor.getInt(2));
         return record;
+    }
+
+    private static boolean containElement(String[] loanArr, String toCheckValue) {
+        boolean hasElement;
+        hasElement = Arrays.asList(loanArr).contains(toCheckValue);
+        return hasElement;
+    }
+
+    public List<LiabilityRecord> getAllLoansToPay() {
+        List<LiabilityRecord> records = new ArrayList<>();
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        Cursor cursor = database.query(Liabilities.Liability.TABLE_NAME, liabilitiesAllColumn, null,
+                null, null, null, null);
+
+        String[] loanCanBePaid = {"Car Loan", "Credit Card", "Mortgage", "Retail Debt", "School Loan", "Bank Loan"};
+
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()) {
+            LiabilityRecord liabilityRecord = new LiabilityRecord();
+            if (containElement(loanCanBePaid, cursor.getString(1)) && cursor.getInt(2) > 0) {
+                liabilityRecord.setId(cursor.getInt(0));
+                liabilityRecord.setLoanType(cursor.getString(1));
+                liabilityRecord.setLoanAmount(cursor.getInt(2));
+                records.add(liabilityRecord);
+            }
+            cursor.moveToNext();
+        }
+
+        return records;
     }
 
     public int getCashFlow() {

@@ -43,7 +43,7 @@ public class BusinessBuyPage extends AppCompatActivity {
         cashonhandtv = findViewById(R.id.businessCashOnHandLabel);
 
         int cashOnHand = databaseHelper.getPlayerInfo().getCashOnHand();
-        cashonhandtv.setHint("Cash on Hand: $"+cashOnHand);
+        cashonhandtv.setHint("Cash on Hand: $"+String.format("%,d", cashOnHand));
 
         businesstypetv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +106,12 @@ public class BusinessBuyPage extends AppCompatActivity {
 
         DatabaseHelper dataSource = new DatabaseHelper(this);
         dataSource.insertBusiness(businessRecord);
+
+        LiabilityRecord liabilityRecord = new LiabilityRecord();
+        liabilityRecord.setLoanType(businessType);
+        liabilityRecord.setLoanAmount((cost - downPayment));
+        dataSource.insertLiability(liabilityRecord);
+
         updatePlayerInfo(v, downPayment);
 
         this.finish();

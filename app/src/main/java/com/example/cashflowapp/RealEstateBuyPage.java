@@ -44,7 +44,7 @@ public class RealEstateBuyPage extends AppCompatActivity {
         cashonhandtv = findViewById(R.id.realEstateCashOnHandLabel);
 
         int cashOnHand = databaseHelper.getPlayerInfo().getCashOnHand();
-        cashonhandtv.setHint("Cash on Hand: $"+cashOnHand);
+        cashonhandtv.setHint("Cash on Hand: $"+String.format("%,d", cashOnHand));
 
         //        Start -- Alert Dialog for Profession TextView
 
@@ -121,6 +121,12 @@ public class RealEstateBuyPage extends AppCompatActivity {
 
         DatabaseHelper dataSource = new DatabaseHelper(this);
         dataSource.insertRealEstate(realEstatesRecord);
+
+        LiabilityRecord liabilityRecord = new LiabilityRecord();
+        liabilityRecord.setLoanType(realEstateType);
+        liabilityRecord.setLoanAmount((cost - downPayment));
+        dataSource.insertLiability(liabilityRecord);
+
         updatePlayerInfo(v, downPayment);
 
         this.finish();

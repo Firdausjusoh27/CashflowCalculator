@@ -30,7 +30,7 @@ public class MainPage extends AppCompatActivity {
     private Button buyBtn, loanBtn, collectBtn;
     static String[] assetTypeList = {"Stock", "Real Estate", "Business", "Gold"};
     static String[] collectTypeList = {"Collect Money", "PAYDAY"};
-    static String[] loanActionList = {"Take Out Loans", "Pay Loans"};
+    static String[] loanActionList = {"Take Out Loans", "Pay Off Loans"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,7 +162,7 @@ public class MainPage extends AppCompatActivity {
                         if (selectedLoanAction.equals("Take Out Loans")) {
                             intent = new Intent(MainPage.this, TakeOutLoanPage.class);
                         } else {
-                            intent = new Intent(MainPage.this, RealEstateBuyPage.class);
+                            intent = new Intent(MainPage.this, PayOffLoanPage.class);
                         }
                         startActivity(intent);
                         dialog.dismiss();

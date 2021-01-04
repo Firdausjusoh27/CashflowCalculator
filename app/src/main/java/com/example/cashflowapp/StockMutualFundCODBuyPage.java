@@ -48,7 +48,7 @@ public class StockMutualFundCODBuyPage extends AppCompatActivity {
         cashonhandtv = findViewById(R.id.cashOnHandLabel);
 
         int cashOnHand = databaseHelper.getPlayerInfo().getCashOnHand();
-        cashonhandtv.setHint("Cash on Hand: $"+cashOnHand);
+        cashonhandtv.setHint("Cash on Hand: $"+String.format("%,d", cashOnHand));
 
 
         //        Start -- Alert Dialog for Profession TextView
@@ -107,7 +107,7 @@ public class StockMutualFundCODBuyPage extends AppCompatActivity {
                         numberOfShares = Integer.parseInt(numberofsharetv.getText().toString());
                     }
                     totalPrice = buyingPrice * numberOfShares;
-                    totalpricetv.setHint("Total Price: $"+totalPrice);
+                    totalpricetv.setHint("Total Price: $"+String.format("%,d", totalPrice));
                 }
             }
         });
@@ -127,7 +127,7 @@ public class StockMutualFundCODBuyPage extends AppCompatActivity {
                         numberOfShares = Integer.parseInt(numberofsharetv.getText().toString());
                     }
                     totalPrice = buyingPrice * numberOfShares;
-                    totalpricetv.setHint("Total Price: $"+totalPrice);
+                    totalpricetv.setHint("Total Price: $"+String.format("%,d", totalPrice));
                 }
             }
         });

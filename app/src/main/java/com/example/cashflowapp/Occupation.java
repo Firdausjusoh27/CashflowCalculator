@@ -151,8 +151,9 @@ public class Occupation extends AppCompatActivity {
                 deletePlayerInfoRecord();
                 savePlayerInfo(v);
                 deleteExpenses();
+                deleteLiabilities();
                 String profession = professiontv.getText().toString();
-                saveExpenses(profession);
+                saveExpensesAndLiabilities(profession);
                 Intent intent = new Intent(Occupation.this, MainPage.class);
                 startActivity(intent);
             }
@@ -239,8 +240,17 @@ public class Occupation extends AppCompatActivity {
         return rowDeleted;
     }
 
-    public void saveExpenses(String profession) {
+    public Integer deleteLiabilities() {
+        DatabaseHelper dataSource = new DatabaseHelper(this);
+        Integer rowDeleted = dataSource.deleteAllLiabilities();
+
+        this.finish();
+        return rowDeleted;
+    }
+
+    public void saveExpensesAndLiabilities(String profession) {
         ExpensesRecord expensesRecord = new ExpensesRecord();
+        LiabilityRecord liabilityRecord = new LiabilityRecord();
         DatabaseHelper dataSource = new DatabaseHelper(this);
         switch (profession){
             case "Doctor":
@@ -271,6 +281,26 @@ public class Occupation extends AppCompatActivity {
                 expensesRecord.setExpensesType("School Loan");
                 expensesRecord.setExpensesAmount(750);
                 dataSource.insertExpenses(expensesRecord);
+
+                liabilityRecord.setLoanType("Car Loan");
+                liabilityRecord.setLoanAmount(19000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Credit Card");
+                liabilityRecord.setLoanAmount(9000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Mortgage");
+                liabilityRecord.setLoanAmount(202000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Retail Debt");
+                liabilityRecord.setLoanAmount(1000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("School Loan");
+                liabilityRecord.setLoanAmount(150000);
+                dataSource.insertLiability(liabilityRecord);
                 break;
             case "Lawyer":
                 expensesRecord.setExpensesType("Taxes");
@@ -300,6 +330,26 @@ public class Occupation extends AppCompatActivity {
                 expensesRecord.setExpensesType("School Loan");
                 expensesRecord.setExpensesAmount(390);
                 dataSource.insertExpenses(expensesRecord);
+
+                liabilityRecord.setLoanType("Car Loan");
+                liabilityRecord.setLoanAmount(11000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Credit Card");
+                liabilityRecord.setLoanAmount(6000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Mortgage");
+                liabilityRecord.setLoanAmount(115000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Retail Debt");
+                liabilityRecord.setLoanAmount(1000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("School Loan");
+                liabilityRecord.setLoanAmount(78000);
+                dataSource.insertLiability(liabilityRecord);
                 break;
             case "Mechanic":
                 expensesRecord.setExpensesType("Taxes");
@@ -326,9 +376,21 @@ public class Occupation extends AppCompatActivity {
                 expensesRecord.setExpensesAmount(50);
                 dataSource.insertExpenses(expensesRecord);
 
-                expensesRecord.setExpensesType("School Loan");
-                expensesRecord.setExpensesAmount(0);
-                dataSource.insertExpenses(expensesRecord);
+                liabilityRecord.setLoanType("Car Loan");
+                liabilityRecord.setLoanAmount(3000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Credit Card");
+                liabilityRecord.setLoanAmount(2000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Mortgage");
+                liabilityRecord.setLoanAmount(31000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Retail Debt");
+                liabilityRecord.setLoanAmount(1000);
+                dataSource.insertLiability(liabilityRecord);
                 break;
             case "Nurse":
                 expensesRecord.setExpensesType("Taxes");
@@ -358,6 +420,26 @@ public class Occupation extends AppCompatActivity {
                 expensesRecord.setExpensesType("School Loan");
                 expensesRecord.setExpensesAmount(30);
                 dataSource.insertExpenses(expensesRecord);
+
+                liabilityRecord.setLoanType("Car Loan");
+                liabilityRecord.setLoanAmount(5000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Credit Card");
+                liabilityRecord.setLoanAmount(3000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Mortgage");
+                liabilityRecord.setLoanAmount(47000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Retail Debt");
+                liabilityRecord.setLoanAmount(1000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("School Loan");
+                liabilityRecord.setLoanAmount(6000);
+                dataSource.insertLiability(liabilityRecord);
                 break;
             case "Police":
                 expensesRecord.setExpensesType("Taxes");
@@ -384,9 +466,21 @@ public class Occupation extends AppCompatActivity {
                 expensesRecord.setExpensesAmount(50);
                 dataSource.insertExpenses(expensesRecord);
 
-                expensesRecord.setExpensesType("School Loan");
-                expensesRecord.setExpensesAmount(0);
-                dataSource.insertExpenses(expensesRecord);
+                liabilityRecord.setLoanType("Car Loan");
+                liabilityRecord.setLoanAmount(5000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Credit Card");
+                liabilityRecord.setLoanAmount(2000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Mortgage");
+                liabilityRecord.setLoanAmount(46000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Retail Debt");
+                liabilityRecord.setLoanAmount(1000);
+                dataSource.insertLiability(liabilityRecord);
                 break;
             case "Secretary":
                 expensesRecord.setExpensesType("Taxes");
@@ -413,9 +507,21 @@ public class Occupation extends AppCompatActivity {
                 expensesRecord.setExpensesAmount(50);
                 dataSource.insertExpenses(expensesRecord);
 
-                expensesRecord.setExpensesType("School Loan");
-                expensesRecord.setExpensesAmount(0);
-                dataSource.insertExpenses(expensesRecord);
+                liabilityRecord.setLoanType("Car Loan");
+                liabilityRecord.setLoanAmount(4000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Credit Card");
+                liabilityRecord.setLoanAmount(2000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Mortgage");
+                liabilityRecord.setLoanAmount(38000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Retail Debt");
+                liabilityRecord.setLoanAmount(1000);
+                dataSource.insertLiability(liabilityRecord);
                 break;
             case "Janitor":
                 expensesRecord.setExpensesType("Taxes");
@@ -442,9 +548,21 @@ public class Occupation extends AppCompatActivity {
                 expensesRecord.setExpensesAmount(50);
                 dataSource.insertExpenses(expensesRecord);
 
-                expensesRecord.setExpensesType("School Loan");
-                expensesRecord.setExpensesAmount(0);
-                dataSource.insertExpenses(expensesRecord);
+                liabilityRecord.setLoanType("Car Loan");
+                liabilityRecord.setLoanAmount(4000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Credit Card");
+                liabilityRecord.setLoanAmount(2000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Mortgage");
+                liabilityRecord.setLoanAmount(20000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Retail Debt");
+                liabilityRecord.setLoanAmount(1000);
+                dataSource.insertLiability(liabilityRecord);
                 break;
             default:
                 expensesRecord.setExpensesType("Taxes");
@@ -474,6 +592,26 @@ public class Occupation extends AppCompatActivity {
                 expensesRecord.setExpensesType("School Loan");
                 expensesRecord.setExpensesAmount(0);
                 dataSource.insertExpenses(expensesRecord);
+
+                liabilityRecord.setLoanType("Car Loan");
+                liabilityRecord.setLoanAmount(4000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Credit Card");
+                liabilityRecord.setLoanAmount(2000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Mortgage");
+                liabilityRecord.setLoanAmount(25000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("Retail Debt");
+                liabilityRecord.setLoanAmount(1000);
+                dataSource.insertLiability(liabilityRecord);
+
+                liabilityRecord.setLoanType("School Loan");
+                liabilityRecord.setLoanAmount(0);
+                dataSource.insertLiability(liabilityRecord);
         }
 
         this.finish();

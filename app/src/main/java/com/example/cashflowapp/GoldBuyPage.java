@@ -37,7 +37,7 @@ public class GoldBuyPage extends AppCompatActivity {
         cashonhandtv = findViewById(R.id.goldCashOnHandLabel);
 
         int cashOnHand = databaseHelper.getPlayerInfo().getCashOnHand();
-        cashonhandtv.setHint("Cash on Hand: $"+cashOnHand);
+        cashonhandtv.setHint("Cash on Hand: $"+String.format("%,d", cashOnHand));
 
         goldtypetv.setOnClickListener(new View.OnClickListener() {
             @Override
