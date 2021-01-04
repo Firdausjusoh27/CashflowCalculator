@@ -1,6 +1,7 @@
 package com.example.cashflowapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.animation.ObjectAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
@@ -27,11 +29,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainPage extends AppCompatActivity {
     private ProgressBar cashPB;
     private TextView textViewProfession, textViewCashOnHand, textViewCashFlow, textViewExpenses, textViewSalary, textViewPayDay;
-    private Button buyBtn, sellBtn, loanBtn, collectBtn;
+    private Button buyBtn, sellBtn, loanBtn, payBtn, collectBtn;
     static String[] assetTypeList = {"Stock", "Real Estate", "Business", "Gold"};
     static String[] collectTypeList = {"Collect Money", "PAYDAY"};
+    static String[] paymentTypeList = {"Charity", "Downsized", "Lend / Pay Money"};
     static String[] loanActionList = {"Take Out Loans", "Pay Off Loans"};
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +46,18 @@ public class MainPage extends AppCompatActivity {
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
         cashPB = findViewById(R.id.progressbar);
-//        cashPB.setProgress(90);
-        cashPB.setProgress(0);
 
         DatabaseHelper dataSource = new DatabaseHelper(this);
+
         PlayerInfoRecord playerInfoRecord = dataSource.getPlayerInfo();
 
         int initTotalExpenses = dataSource.getSumOfExpenses();
         int totalCashFlow = dataSource.getCashFlow();
+
+        int progressPercentage = (int)((Double.valueOf(String.valueOf(totalCashFlow)) / Double.valueOf(String.valueOf(initTotalExpenses))) * 100);
+        if (progressPercentage > 100)
+            progressPercentage = 100;
+        cashPB.setProgress(progressPercentage, true);
 
         textViewProfession = (TextView)findViewById(R.id.ProfessionTV);
         textViewProfession.setText(playerInfoRecord.getProfession());
@@ -202,6 +210,81 @@ public class MainPage extends AppCompatActivity {
                             intent = new Intent(MainPage.this, PayOffLoanPage.class);
                         }
                         startActivity(intent);
+                        dialog.dismiss();
+
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+
+        payBtn = findViewById(R.id.payButton);
+        payBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                final ListView listView = new ListView(MainPage.this);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainPage.this, android.R.layout.simple_list_item_1, paymentTypeList);
+                listView.setAdapter(adapter);
+                AlertDialog.Builder prodialog = new AlertDialog.Builder(MainPage.this);
+                prodialog.setCancelable(true);
+                prodialog.setView(listView);
+                final AlertDialog dialog = prodialog.create();
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selectedPaymentType = adapter.getItem(position);
+                        if (selectedPaymentType.equals("Charity")) {
+                            int charityAmount = (int)((playerInfoRecord.getSalary() + totalCashFlow) * 0.1);
+                            if (playerInfoRecord.getCashOnHand() >= charityAmount) {
+                                int newCashOnHand = playerInfoRecord.getCashOnHand() - charityAmount;
+                                playerInfoRecord.setCashOnHand(newCashOnHand);
+                                dataSource.updatePlayerInfo(playerInfoRecord);
+                                textViewCashOnHand.setHint("Cash On Hand: $" + String.format("%,d", playerInfoRecord.getCashOnHand()));
+                            } else {
+                                Toast.makeText(MainPage.this, "Cash on Hand not enough", Toast.LENGTH_LONG).show();
+                            }
+                        } else if (selectedPaymentType.equals("Downsized")) {
+                            if (playerInfoRecord.getCashOnHand() >= initTotalExpenses) {
+                                int newCashOnHand = playerInfoRecord.getCashOnHand() - initTotalExpenses;
+                                playerInfoRecord.setCashOnHand(newCashOnHand);
+                                dataSource.updatePlayerInfo(playerInfoRecord);
+                                textViewCashOnHand.setHint("Cash On Hand: $" + String.format("%,d", playerInfoRecord.getCashOnHand()));
+                            } else {
+                                Toast.makeText(MainPage.this, "Cash on Hand not enough", Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            AlertDialog.Builder collectCashDialog = new AlertDialog.Builder(MainPage.this);
+                            collectCashDialog.setTitle("Please enter amount to pay");
+                            final EditText amountToPayInput = new EditText(MainPage.this);
+                            amountToPayInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+                            collectCashDialog.setView(amountToPayInput);
+
+                            collectCashDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int which) {
+                                    int cashToPay = Integer.parseInt(amountToPayInput.getText().toString());
+                                    if (playerInfoRecord.getCashOnHand() >= cashToPay) {
+                                        int newCashOnHand = playerInfoRecord.getCashOnHand() - cashToPay;
+                                        playerInfoRecord.setCashOnHand(newCashOnHand);
+                                        dataSource.updatePlayerInfo(playerInfoRecord);
+                                        textViewCashOnHand.setHint("Cash On Hand: $" + String.format("%,d", playerInfoRecord.getCashOnHand()));
+                                    } else {
+                                        Toast.makeText(MainPage.this, "Cash on Hand not enough", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                            collectCashDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int which) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+
+                            collectCashDialog.show();
+                        }
+
                         dialog.dismiss();
 
                     }

@@ -90,6 +90,7 @@
             android:layout_margin="3dp">
 
             <Button
+                android:id="@+id/marketActionButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Market Action"
@@ -100,6 +101,7 @@
                 android:background="#5E4181"/>
 
             <Button
+                android:id="@+id/payButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Pay"
