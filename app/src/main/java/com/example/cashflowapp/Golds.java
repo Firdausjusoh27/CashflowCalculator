@@ -9,5 +9,6 @@ public class Golds {
         public static final String TABLE_NAME = "gold";
         public static final String COLUMN_ID = "id";
         public static final String COLUMN_GOLD_TYPE = "gold_type";
+        public static final String COLUMN_GOLD_AMOUNT = "gold_amount";
     }
 }

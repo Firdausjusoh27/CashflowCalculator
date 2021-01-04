@@ -16,7 +16,7 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "cash_flow_calculator.db";
 
     private static final String SQL_CREATE_PLAYER_INFO =
@@ -107,12 +107,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_GOLD =
             "CREATE TABLE " + Golds.Gold.TABLE_NAME + "(" +
                     Golds.Gold.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    Golds.Gold.COLUMN_GOLD_TYPE + " TEXT)";
+                    Golds.Gold.COLUMN_GOLD_TYPE + " TEXT," +
+                    Golds.Gold.COLUMN_GOLD_AMOUNT + " INTEGER)";
     private static final String SQL_DELETE_GOLD =
             "DROP TABLE IF EXISTS " + Golds.Gold.TABLE_NAME;
     private String[] goldAllColumn = {
             Golds.Gold.COLUMN_ID,
             Golds.Gold.COLUMN_GOLD_TYPE,
+            Golds.Gold.COLUMN_GOLD_AMOUNT,
     };
 
     private static final String SQL_CREATE_LIABILITIES =
@@ -349,6 +351,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return rowDeleted;
     }
 
+    public List<StockMutualFundCODRecord> getAllPurchasedStocks() {
+        List<StockMutualFundCODRecord> records = new ArrayList<>();
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        Cursor cursor = database.query(StockMutualFundCOD.StockMFundCOD.TABLE_NAME, stockMFundCodAllColumn, null,
+                null, null, null, null);
+
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()) {
+            StockMutualFundCODRecord stockMutualFundCODRecord = new StockMutualFundCODRecord();
+            stockMutualFundCODRecord.setId(cursor.getInt(0));
+            stockMutualFundCODRecord.setStockType(cursor.getString(1));
+            stockMutualFundCODRecord.setBuyingPrice(cursor.getInt(2));
+            stockMutualFundCODRecord.setNumOfShares(cursor.getInt(3));
+            stockMutualFundCODRecord.setMonthlyDividends(cursor.getInt(4));
+            stockMutualFundCODRecord.setMonthlyInterest(cursor.getInt(5));
+            records.add(stockMutualFundCODRecord);
+            cursor.moveToNext();
+        }
+
+        return records;
+    }
+
     //    table real_estate
     public void  insertRealEstate(RealEstatesRecord realEstatesRecord) {
         ContentValues values = new ContentValues();
@@ -386,6 +412,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Integer rowDeleted = db.delete(RealEstates.RealEstate.TABLE_NAME, "", new String[] { });
         return rowDeleted;
+    }
+
+    public List<RealEstatesRecord> getAllPurchasedRealEstates() {
+        List<RealEstatesRecord> records = new ArrayList<>();
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        Cursor cursor = database.query(RealEstates.RealEstate.TABLE_NAME, realEstateAllColumn, null,
+                null, null, null, null);
+
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()) {
+            RealEstatesRecord realEstatesRecord = new RealEstatesRecord();
+            realEstatesRecord.setId(cursor.getInt(0));
+            realEstatesRecord.setRealEstateType(cursor.getString(1));
+            realEstatesRecord.setCost(cursor.getInt(2));
+            realEstatesRecord.setDownPayment(cursor.getInt(3));
+            realEstatesRecord.setCashFlow(cursor.getInt(4));
+            realEstatesRecord.setNumberOfUnits(cursor.getInt(5));
+            records.add(realEstatesRecord);
+            cursor.moveToNext();
+        }
+
+        return records;
     }
 
     //    table business
@@ -428,15 +478,51 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return rowDeleted;
     }
 
+    public List<BusinessRecord> getAllPurchasedBusinesses() {
+        List<BusinessRecord> records = new ArrayList<>();
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        Cursor cursor = database.query(Businesses.Business.TABLE_NAME, businessAllColumn, null,
+                null, null, null, null);
+
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()) {
+            BusinessRecord businessRecord = new BusinessRecord();
+            businessRecord.setId(cursor.getInt(0));
+            businessRecord.setBusinessType(cursor.getString(1));
+            businessRecord.setCost(cursor.getInt(2));
+            businessRecord.setDownPayment(cursor.getInt(3));
+            businessRecord.setCashFlow(cursor.getInt(4));
+            records.add(businessRecord);
+            cursor.moveToNext();
+        }
+
+        return records;
+    }
+
     //    table gold
     public void  insertGold(GoldRecord goldRecord) {
         ContentValues values = new ContentValues();
         values.put(Golds.Gold.COLUMN_GOLD_TYPE, goldRecord.getGoldType());
+        values.put(Golds.Gold.COLUMN_GOLD_AMOUNT, goldRecord.getGoldAmount());
 
         SQLiteDatabase database = this.getWritableDatabase();
         database.insert(Golds.Gold.TABLE_NAME, null, values);
 
         database.close();
+    }
+
+    public boolean updateGold(GoldRecord goldRecord) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Golds.Gold.COLUMN_GOLD_TYPE, goldRecord.getGoldType());
+        values.put(Golds.Gold.COLUMN_GOLD_AMOUNT, goldRecord.getGoldAmount());
+        db.update(Golds.Gold.TABLE_NAME, values, "id = ?", new String[] { String.valueOf(goldRecord.getId()) });
+
+        db.close();
+
+        return true;
     }
 
     public Integer deleteGold(int id) {
@@ -449,6 +535,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Integer rowDeleted = db.delete(Golds.Gold.TABLE_NAME, "", new String[] { });
         return rowDeleted;
+    }
+
+    public List<GoldRecord> getAllPurchasedGolds() {
+        List<GoldRecord> records = new ArrayList<>();
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        Cursor cursor = database.query(Golds.Gold.TABLE_NAME, goldAllColumn, null,
+                null, null, null, null);
+
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()) {
+            GoldRecord goldRecord = new GoldRecord();
+            goldRecord.setId(cursor.getInt(0));
+            goldRecord.setGoldType(cursor.getString(1));
+            goldRecord.setGoldAmount(cursor.getInt(2));
+            records.add(goldRecord);
+            cursor.moveToNext();
+        }
+
+        return records;
     }
 
     //    table liability

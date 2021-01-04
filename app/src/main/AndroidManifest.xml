@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CashFlowApp">
-        <activity android:name=".PayOffLoanPage"></activity>
+        <activity android:name=".GoldSellPage"></activity>
+        <activity android:name=".BusinessSellPage" />
+        <activity android:name=".RealEstateSellPage" />
+        <activity android:name=".StockMutualFundCODSellPage" />
+        <activity android:name=".PayOffLoanPage" />
         <activity android:name=".TakeOutLoanPage" />
         <activity android:name=".GoldBuyPage" />
         <activity android:name=".BusinessBuyPage" />

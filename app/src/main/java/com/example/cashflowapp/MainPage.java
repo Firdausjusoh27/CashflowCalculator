@@ -27,7 +27,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainPage extends AppCompatActivity {
     private ProgressBar cashPB;
     private TextView textViewProfession, textViewCashOnHand, textViewCashFlow, textViewExpenses, textViewSalary, textViewPayDay;
-    private Button buyBtn, loanBtn, collectBtn;
+    private Button buyBtn, sellBtn, loanBtn, collectBtn;
     static String[] assetTypeList = {"Stock", "Real Estate", "Business", "Gold"};
     static String[] collectTypeList = {"Collect Money", "PAYDAY"};
     static String[] loanActionList = {"Take Out Loans", "Pay Off Loans"};
@@ -141,6 +141,43 @@ public class MainPage extends AppCompatActivity {
             }
         });
 
+        sellBtn = findViewById(R.id.sellButton);
+        sellBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                final ListView listView = new ListView(MainPage.this);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainPage.this, android.R.layout.simple_list_item_1, assetTypeList);
+                listView.setAdapter(adapter);
+                AlertDialog.Builder prodialog = new AlertDialog.Builder(MainPage.this);
+                prodialog.setCancelable(true);
+                prodialog.setView(listView);
+                final AlertDialog dialog = prodialog.create();
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selectedAssetType = adapter.getItem(position);
+                        if (selectedAssetType.equals("Stock")) {
+                            Intent intent = new Intent(MainPage.this, StockMutualFundCODSellPage.class);
+                            startActivity(intent);
+                        } else if (selectedAssetType.equals("Real Estate")) {
+                            Intent intent = new Intent(MainPage.this, RealEstateSellPage.class);
+                            startActivity(intent);
+                        } else if (selectedAssetType.equals("Business")) {
+                            Intent intent = new Intent(MainPage.this, BusinessSellPage.class);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(MainPage.this, GoldSellPage.class);
+                            startActivity(intent);
+                        }
+                        dialog.dismiss();
+
+                    }
+                });
+
+                dialog.show();
+            }
+        });
 
         loanBtn = findViewById(R.id.loanButton);
         loanBtn.setOnClickListener(new View.OnClickListener(){

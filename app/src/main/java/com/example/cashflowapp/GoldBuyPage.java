@@ -96,6 +96,11 @@ public class GoldBuyPage extends AppCompatActivity {
 
         GoldRecord goldRecord = new GoldRecord();
         goldRecord.setGoldType(goldType);
+        if (goldType.equals("Spanish Gold")) {
+            goldRecord.setGoldAmount(1);
+        } else {
+            goldRecord.setGoldAmount(10);
+        }
 
         DatabaseHelper dataSource = new DatabaseHelper(this);
         dataSource.insertGold(goldRecord);
