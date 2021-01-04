@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CashFlowApp">
-        <activity android:name=".GoldSellPage"></activity>
+        <activity android:name=".StockReverseSplitPage"></activity>
+        <activity android:name=".StockSplitPage" />
+        <activity android:name=".GoldSellPage" />
         <activity android:name=".BusinessSellPage" />
         <activity android:name=".RealEstateSellPage" />
         <activity android:name=".StockMutualFundCODSellPage" />

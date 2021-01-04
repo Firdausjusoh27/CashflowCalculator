@@ -26,14 +26,44 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class MainPage extends AppCompatActivity {
     private ProgressBar cashPB;
     private TextView textViewProfession, textViewCashOnHand, textViewCashFlow, textViewExpenses, textViewSalary, textViewPayDay;
-    private Button buyBtn, sellBtn, loanBtn, payBtn, collectBtn;
+    private Button buyBtn, sellBtn, loanBtn, marketActionBtn, payBtn, collectBtn;
     static String[] assetTypeList = {"Stock", "Real Estate", "Business", "Gold"};
     static String[] collectTypeList = {"Collect Money", "PAYDAY"};
     static String[] paymentTypeList = {"Charity", "Downsized", "Lend / Pay Money"};
     static String[] loanActionList = {"Take Out Loans", "Pay Off Loans"};
+
+    private static boolean containElement(String[] marketActionArr, String toCheckValue) {
+        boolean hasElement;
+        hasElement = Arrays.asList(marketActionArr).contains(toCheckValue);
+        return hasElement;
+    }
+
+    protected static String[] addElementToArray(int n, String arr[], String x)
+    {
+        int i;
+
+        // create a new array of size n+1
+        String newarr[] = new String[n + 1];
+
+        // insert the elements from
+        // the old array into the new array
+        // insert all elements till n
+        // then insert x at n+1
+        for (i = 0; i < n; i++)
+            newarr[i] = arr[i];
+
+        newarr[n] = x;
+
+        return newarr;
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -210,6 +240,175 @@ public class MainPage extends AppCompatActivity {
                             intent = new Intent(MainPage.this, PayOffLoanPage.class);
                         }
                         startActivity(intent);
+                        dialog.dismiss();
+
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+
+        marketActionBtn = findViewById(R.id.marketActionButton);
+        marketActionBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                final ListView listView = new ListView(MainPage.this);
+
+                String[] marketActionList = {};
+
+                List<BusinessRecord> businessRecordList = dataSource.getAllPurchasedBusinesses();
+                boolean hasLimitedPartnership = false;
+                boolean hasSmallBusiness = false;
+                boolean hasRealEstate = false;
+                boolean hasStock = false;
+                List<BusinessRecord> limitedPartnershipBusiness = new ArrayList<>();
+                List<BusinessRecord> smallBusinesses = new ArrayList<>();
+                for (int i = 0; i < businessRecordList.size(); i++) {
+                    String bizType = businessRecordList.get(i).getBusinessType();
+                    if(bizType.equals("Auto Dealer") || bizType.equals("Doctor Office") || bizType.equals("Pizza Chain") || bizType.equals("Shopping Mall") || bizType.equals("Sandwich Shop")) {
+                        hasLimitedPartnership = true;
+                        limitedPartnershipBusiness.add(businessRecordList.get(i));
+                    }
+                    if(bizType.equals("Widget Company") || bizType.equals("Software Company")) {
+                        hasSmallBusiness = true;
+                        smallBusinesses.add(businessRecordList.get(i));
+                    }
+                }
+                List<RealEstatesRecord> realEstatesRecordList = dataSource.getAllPurchasedRealEstates();
+                if (realEstatesRecordList.size() > 0)
+                    hasRealEstate = true;
+                List<StockMutualFundCODRecord> stockMutualFundCODRecordList = dataSource.getAllPurchasedStocks();
+                if (stockMutualFundCODRecordList.size() > 0)
+                    hasStock = true;
+                if (hasLimitedPartnership && !containElement(marketActionList, "Limited Partnership Sold"))
+                    marketActionList = addElementToArray(marketActionList.length, marketActionList, "Limited Partnership Sold");
+                if (hasSmallBusiness && !containElement(marketActionList, "Business Improvement"))
+                    marketActionList = addElementToArray(marketActionList.length, marketActionList, "Business Improvement");
+                if (hasRealEstate && !containElement(marketActionList, "Real Estate Repair"))
+                    marketActionList = addElementToArray(marketActionList.length, marketActionList, "Real Estate Repair");
+                if (hasStock) {
+                    if (!containElement(marketActionList, "Reverse Stock Split"))
+                        marketActionList = addElementToArray(marketActionList.length, marketActionList, "Reverse Stock Split");
+                    if (!containElement(marketActionList, "Stock Split"))
+                        marketActionList = addElementToArray(marketActionList.length, marketActionList, "Stock Split");
+                }
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainPage.this, android.R.layout.simple_list_item_1, marketActionList);
+                listView.setAdapter(adapter);
+                AlertDialog.Builder prodialog = new AlertDialog.Builder(MainPage.this);
+                prodialog.setCancelable(true);
+                prodialog.setView(listView);
+                final AlertDialog dialog = prodialog.create();
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selectedMarketActionType = adapter.getItem(position);
+                        if (selectedMarketActionType.equals("Limited Partnership Sold")) {
+                            AlertDialog.Builder marketActionDialog = new AlertDialog.Builder(MainPage.this);
+                            marketActionDialog.setTitle("Please enter value increase (i.e: 2x):");
+                            final EditText valueIncreaseInput = new EditText(MainPage.this);
+                            valueIncreaseInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+                            marketActionDialog.setView(valueIncreaseInput);
+
+                            marketActionDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int which) {
+                                    int valueIncrease = Integer.parseInt(valueIncreaseInput.getText().toString());
+                                    int totalCashIncrease = 0;
+                                    for (int i = 0; i < limitedPartnershipBusiness.size(); i++) {
+                                        totalCashIncrease += (limitedPartnershipBusiness.get(i).getCost() * valueIncrease);
+                                        dataSource.deleteBusiness(limitedPartnershipBusiness.get(i).getId());
+                                    }
+                                    int newCashOnHand = playerInfoRecord.getCashOnHand() + totalCashIncrease;
+                                    playerInfoRecord.setCashOnHand(newCashOnHand);
+                                    dataSource.updatePlayerInfo(playerInfoRecord);
+                                    textViewCashOnHand.setHint("Cash On Hand: $" + String.format("%,d", playerInfoRecord.getCashOnHand()));
+                                    int newTotalCashFlow = dataSource.getCashFlow();
+                                    textViewCashFlow = (TextView)findViewById(R.id.cashFlowTV);
+                                    textViewCashFlow.setHint("CashFlow: $" + String.format("%,d", newTotalCashFlow));
+                                    textViewSalary = (TextView)findViewById(R.id.TotalIncomeTV);
+                                    textViewSalary.setHint("Total Income: $" + String.format("%,d", (playerInfoRecord.getSalary() + newTotalCashFlow)));
+                                    textViewPayDay = (TextView)findViewById(R.id.PaydayTV);
+                                    textViewPayDay.setHint("PAYDAY: $" + String.format("%,d", (playerInfoRecord.getSalary() - initTotalExpenses + newTotalCashFlow)));
+                                }
+                            });
+                            marketActionDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int which) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+
+                            marketActionDialog.show();
+                        } else if (selectedMarketActionType.equals("Business Improvement")) {
+                            AlertDialog.Builder marketActionDialog = new AlertDialog.Builder(MainPage.this);
+                            marketActionDialog.setTitle("Please enter Cash Flow increase amount:");
+                            final EditText cashFlowIncreaseInput = new EditText(MainPage.this);
+                            cashFlowIncreaseInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+                            marketActionDialog.setView(cashFlowIncreaseInput);
+
+                            marketActionDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int which) {
+                                    int cashFlowIncrease = Integer.parseInt(cashFlowIncreaseInput.getText().toString());
+                                    for (int i = 0; i < smallBusinesses.size(); i++) {
+                                        BusinessRecord smallBusinessRecord = smallBusinesses.get(i);
+                                        int currentBizCashFlow = smallBusinessRecord.getCashFlow();
+                                        smallBusinessRecord.setCashFlow(currentBizCashFlow + cashFlowIncrease);
+                                        dataSource.updateBusiness(smallBusinessRecord);
+                                    }
+                                    int newTotalCashFlow = dataSource.getCashFlow();
+                                    textViewCashFlow = (TextView)findViewById(R.id.cashFlowTV);
+                                    textViewCashFlow.setHint("CashFlow: $" + String.format("%,d", newTotalCashFlow));
+                                    textViewSalary = (TextView)findViewById(R.id.TotalIncomeTV);
+                                    textViewSalary.setHint("Total Income: $" + String.format("%,d", (playerInfoRecord.getSalary() + newTotalCashFlow)));
+                                    textViewPayDay = (TextView)findViewById(R.id.PaydayTV);
+                                    textViewPayDay.setHint("PAYDAY: $" + String.format("%,d", (playerInfoRecord.getSalary() - initTotalExpenses + newTotalCashFlow)));
+                                }
+                            });
+                            marketActionDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int which) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+
+                            marketActionDialog.show();
+                        } else if (selectedMarketActionType.equals("Real Estate Repair")) {
+                            AlertDialog.Builder marketActionDialog = new AlertDialog.Builder(MainPage.this);
+                            marketActionDialog.setTitle("Please enter repair costs:");
+                            final EditText repairCostInput = new EditText(MainPage.this);
+                            repairCostInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+                            marketActionDialog.setView(repairCostInput);
+
+                            marketActionDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int which) {
+                                    int repairCost = Integer.parseInt(repairCostInput.getText().toString());
+                                    int newCashOnHand = playerInfoRecord.getCashOnHand() - repairCost;
+                                    playerInfoRecord.setCashOnHand(newCashOnHand);
+                                    dataSource.updatePlayerInfo(playerInfoRecord);
+                                    textViewCashOnHand.setHint("Cash On Hand: $" + String.format("%,d", playerInfoRecord.getCashOnHand()));
+                                }
+                            });
+                            marketActionDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int which) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+
+                            marketActionDialog.show();
+                        } else if (selectedMarketActionType.equals("Reverse Stock Split")) {
+                            Intent intent = new Intent(MainPage.this, StockReverseSplitPage.class);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(MainPage.this, StockSplitPage.class);
+                            startActivity(intent);
+                        }
+
                         dialog.dismiss();
 
                     }

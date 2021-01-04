@@ -375,6 +375,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return records;
     }
 
+    public List<StockMutualFundCODRecord> getPurchasedStocksByType(String stockType) {
+        List<StockMutualFundCODRecord> records = new ArrayList<>();
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        Cursor cursor = database.query(StockMutualFundCOD.StockMFundCOD.TABLE_NAME, stockMFundCodAllColumn, "stock_type = ?",
+                new String[] { stockType }, null, null, null);
+
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()) {
+            StockMutualFundCODRecord stockMutualFundCODRecord = new StockMutualFundCODRecord();
+            stockMutualFundCODRecord.setId(cursor.getInt(0));
+            stockMutualFundCODRecord.setStockType(cursor.getString(1));
+            stockMutualFundCODRecord.setBuyingPrice(cursor.getInt(2));
+            stockMutualFundCODRecord.setNumOfShares(cursor.getInt(3));
+            stockMutualFundCODRecord.setMonthlyDividends(cursor.getInt(4));
+            stockMutualFundCODRecord.setMonthlyInterest(cursor.getInt(5));
+            records.add(stockMutualFundCODRecord);
+            cursor.moveToNext();
+        }
+
+        return records;
+    }
+
     //    table real_estate
     public void  insertRealEstate(RealEstatesRecord realEstatesRecord) {
         ContentValues values = new ContentValues();
