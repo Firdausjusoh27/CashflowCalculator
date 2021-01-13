@@ -6,17 +6,71 @@
     android:layout_height="match_parent"
     tools:context=".IncomePage">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Income"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Income Page"
+            android:textSize="35sp"
+            android:layout_marginTop="20dp"
+            android:textColor="#462C67"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="30dp"
+            android:background="#3A3A3A"/>
+
+        <TextView
+            android:id="@+id/salaryTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:hint="Salary"
+            android:inputType="text"
+            android:textColorHint="#462C67"
+            android:textSize="20dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:background="#3A3A3A"/>
+
+        <TextView
+            android:id="@+id/total_passiveTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:hint="Total Passive"
+            android:inputType="text"
+            android:textColorHint="#462C67"
+            android:textSize="20dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="#3A3A3A"/>
+
+    </LinearLayout>
+
+
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

@@ -7,19 +7,63 @@
     tools:context=".AssetsPage">
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Assets"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.067"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Asset Page"
+            android:textSize="35sp"
+            android:layout_marginTop="30dp"
+            android:textColor="#462C67"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/asset_TB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:hint="ASSETS"
+            android:inputType="text"
+            android:textColorHint="#4F4F50"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="#3A3A3A"/>
+
+        <TextView
+            android:id="@+id/asset_detailTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:hint="No Assets on Record"
+            android:inputType="text"
+            android:textColorHint="#462C67"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="#3A3A3A"/>
+
+
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
@@ -33,7 +77,16 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" />
 
-<!--    <EditText-->
+    <View
+        android:id="@+id/viewDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        tools:ignore="MissingConstraints" />
+
+
+    <!--    <EditText-->
 <!--        android:id="@+id/assetType"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->

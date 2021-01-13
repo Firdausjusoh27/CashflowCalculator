@@ -25,14 +25,18 @@ public class ExpensesPage extends AppCompatActivity {
         //        Initialize and assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
 
-//        Set Home Selected
-        bottomNavigationView.setSelectedItemId(R.id.menuIncome);
+//        Set Expenses Selected
+        bottomNavigationView.setSelectedItemId(R.id.menuExpenses);
 
 //        Perform ItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
+
+                    case R.id.menuExpenses:
+                        return true;
+
                     case R.id.menuIncome:
                         startActivity(new Intent(getApplicationContext(), IncomePage.class));
                         overridePendingTransition(0,0);
@@ -41,9 +45,6 @@ public class ExpensesPage extends AppCompatActivity {
                     case R.id.menuHome:
                         startActivity(new Intent(getApplicationContext(), MainPage.class));
                         overridePendingTransition(0,0);
-                        return true;
-
-                    case R.id.menuExpenses:
                         return true;
 
                     case R.id.menuAssets:

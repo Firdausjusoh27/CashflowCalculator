@@ -6,17 +6,170 @@
     android:layout_height="match_parent"
     tools:context=".ExpensesPage">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Expenses"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintBottom_toTopOf="@+id/viewDivider"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Expenses Page"
+            android:textSize="35sp"
+            android:layout_marginTop="20dp"
+            android:textColor="#462C67"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/permanent_expensesTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:hint="PERMANENT EXPENSES"
+            android:inputType="text"
+            android:textColorHint="#4F4F50"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="#3A3A3A"/>
+
+        <TextView
+            android:id="@+id/expenses_taxesTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:hint="Taxes"
+            android:inputType="text"
+            android:textColorHint="#462C67"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:background="#3A3A3A"/>
+
+        <TextView
+            android:id="@+id/expenses_otherTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:hint="Other"
+            android:inputType="text"
+            android:textColorHint="#462C67"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="#3A3A3A"/>
+
+        <TextView
+            android:id="@+id/expenses_credit_loanTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:hint="CREDIT/LOANS"
+            android:inputType="text"
+            android:textColorHint="#4F4F50"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="#3A3A3A"/>
+
+        <TextView
+            android:id="@+id/expenses_car_loanTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:hint="Car Loan"
+            android:inputType="text"
+            android:textColorHint="#462C67"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:background="#3A3A3A"/>
+
+        <TextView
+            android:id="@+id/expenses_credit_cardTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:hint="Credit Card"
+            android:inputType="text"
+            android:textColorHint="#462C67"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:background="#3A3A3A"/>
+
+        <TextView
+            android:id="@+id/expenses_mortgageTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:hint="Mortage"
+            android:inputType="text"
+            android:textColorHint="#462C67"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:background="#3A3A3A"/>
+
+        <TextView
+            android:id="@+id/expenses_retail_debtTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:hint="Retail Debt"
+            android:inputType="text"
+            android:textColorHint="#462C67"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="#3A3A3A"/>
+
+
+    </LinearLayout>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -30,5 +183,12 @@
         app:menu="@menu/navigation_menu"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" />
+    <View
+        android:id="@+id/viewDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
