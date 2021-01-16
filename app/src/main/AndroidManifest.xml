@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CashFlowApp">
-        <activity android:name=".StockReverseSplitPage"></activity>
+        <activity android:name=".AssetRecord"></activity>
+        <activity android:name=".AssetRecordAdapter" />
+        <activity android:name=".StockReverseSplitPage" />
         <activity android:name=".StockSplitPage" />
         <activity android:name=".GoldSellPage" />
         <activity android:name=".BusinessSellPage" />
@@ -29,6 +31,7 @@
         <activity android:name=".Occupation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

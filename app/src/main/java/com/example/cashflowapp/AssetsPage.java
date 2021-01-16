@@ -6,16 +6,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AssetsPage extends AppCompatActivity {
-//    private TextView stockTypetv, buyingPricetv, numOfSharetv, monthlyDividendtv, monthlyInteresttv;
-//    private Button nextBtn;
+    DatabaseHelper dbHelper;
+    ListView listViewRecords;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,31 +34,14 @@ public class AssetsPage extends AppCompatActivity {
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
+        listViewRecords = (ListView)findViewById(R.id.listViewRecords);
+//        listViewRecords.setOnItemClickListener(this);
 
         //        Initialize and assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
 
 //        Set Home Selected
         bottomNavigationView.setSelectedItemId(R.id.menuAssets);
-
-//        stockTypetv = findViewById(R.id.assetType);
-//        buyingPricetv = findViewById(R.id.buyingPrice);
-//        numOfSharetv = findViewById(R.id.numOfShares);
-//        monthlyDividendtv = findViewById(R.id.monthlyDividends);
-
-//        nextBtn = findViewById(R.id.nextButton);
-//        nextBtn.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                saveStock(v);
-//                saveRealEstate(v);
-//                saveBusiness(v);
-//                saveGold(v);
-//                saveLiability(v);
-//                Intent intent = new Intent(AssetsPage.this, MainPage.class);
-//                startActivity(intent);
-//            }
-//        });
 
 //        Perform ItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -86,109 +76,91 @@ public class AssetsPage extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateList();
+    }
 
+    private void updateList() {
+        dbHelper = new DatabaseHelper(this);
+        List<AssetRecord> assetRecords = new ArrayList<>();
 
-//    public void saveStock(View v) {
-//        String stockType;
-//        int buyingprice, numberOfShares, monthlyDiv;
-//        stockType = stockTypetv.getText().toString();
-//        buyingprice = Integer.parseInt(buyingPricetv.getText().toString());
-//        numberOfShares = Integer.parseInt(numOfSharetv.getText().toString());
-//        monthlyDiv = Integer.parseInt(monthlyDividendtv.getText().toString());
-//        StockMutualFundCODRecord stockMutualFundCODRecord = new StockMutualFundCODRecord();
-//        stockMutualFundCODRecord.setStockType(stockType);
-//        stockMutualFundCODRecord.setBuyingPrice(buyingprice);
-//        stockMutualFundCODRecord.setNumOfShares(numberOfShares);
-//        stockMutualFundCODRecord.setMonthlyDividends(monthlyDiv);
-//        stockMutualFundCODRecord.setMonthlyInterest(0);
-//        stockMutualFundCODRecord.setId(1);
-//
-//        DatabaseHelper dataSource = new DatabaseHelper(this);
-//        dataSource.insertStockMutualFundCOD(stockMutualFundCODRecord);
-////        dataSource.updateStockMutualFundCOD(stockMutualFundCODRecord);
-////        dataSource.deleteStockMutualFundCOD(4);
-////        dataSource.deleteAllStockMutualFundCOD();
-//
-//        this.finish();
-//    }
-//
-//    public void saveRealEstate(View v) {
-//        String realEstateType;
-//        int cost, downPayment, cashFlow, numberOfUnits;
-//        realEstateType = stockTypetv.getText().toString();
-//        cost = Integer.parseInt(buyingPricetv.getText().toString());
-//        downPayment = Integer.parseInt(numOfSharetv.getText().toString());
-//        cashFlow = Integer.parseInt(monthlyDividendtv.getText().toString());
-//        RealEstatesRecord realEstatesRecord = new RealEstatesRecord();
-//        realEstatesRecord.setRealEstateType(realEstateType);
-//        realEstatesRecord.setCost(cost);
-//        realEstatesRecord.setDownPayment(downPayment);
-//        realEstatesRecord.setCashFlow(cashFlow);
-//        realEstatesRecord.setNumberOfUnits(0);
-//        realEstatesRecord.setId(1);
-//
-//        DatabaseHelper dataSource = new DatabaseHelper(this);
-//        dataSource.insertRealEstate(realEstatesRecord);
-////        dataSource.updateRealEstate(realEstatesRecord);
-////        dataSource.deleteRealEstate(3);
-////        dataSource.deleteAllRealEstates();
-//
-//        this.finish();
-//    }
-//
-//    public void saveBusiness(View v) {
-//        String businessType;
-//        int cost, downPayment, cashFlow;
-//        businessType = stockTypetv.getText().toString();
-//        cost = Integer.parseInt(buyingPricetv.getText().toString());
-//        downPayment = Integer.parseInt(numOfSharetv.getText().toString());
-//        cashFlow = Integer.parseInt(monthlyDividendtv.getText().toString());
-//        BusinessRecord businessRecord = new BusinessRecord();
-//        businessRecord.setBusinessType(businessType);
-//        businessRecord.setCost(cost);
-//        businessRecord.setDownPayment(downPayment);
-//        businessRecord.setCashFlow(cashFlow);
-//        businessRecord.setId(1);
-//
-//        DatabaseHelper dataSource = new DatabaseHelper(this);
-//        dataSource.insertBusiness(businessRecord);
-////        dataSource.updateBusiness(businessRecord);
-////        dataSource.deleteBusiness(3);
-////        dataSource.deleteAllBusinesses();
-//
-//        this.finish();
-//    }
-//
-//    public void saveGold(View v) {
-//        String goldType;
-//        goldType = stockTypetv.getText().toString();
-//        GoldRecord goldRecord = new GoldRecord();
-//        goldRecord.setGoldType(goldType);
-//
-//        DatabaseHelper dataSource = new DatabaseHelper(this);
-////        dataSource.insertGold(goldRecord);
-////        dataSource.deleteGold(3);
-//        dataSource.deleteAllGolds();
-//
-//        this.finish();
-//    }
-//
-//    public void saveLiability(View v) {
-//        String loanType;
-//        int loanAmount;
-//        loanType = stockTypetv.getText().toString();
-//        loanAmount = Integer.parseInt(buyingPricetv.getText().toString());
-//        LiabilityRecord liabilityRecord = new LiabilityRecord();
-//        liabilityRecord.setLoanType(loanType);
-//        liabilityRecord.setLoanAmount(loanAmount);
-//        liabilityRecord.setId(1);
-//
-//        DatabaseHelper dataSource = new DatabaseHelper(this);
-//        dataSource.insertLiability(liabilityRecord);
-////        dataSource.updateLiability(liabilityRecord);
-////        dataSource.deleteLiability(3);
-////        dataSource.deleteAllLiabilities();
-//
-//        this.finish();
-//    }
+        final List<StockMutualFundCODRecord> stockMutualFundCODRecords = dbHelper.getAllPurchasedStocks();
+        if (stockMutualFundCODRecords.size() > 0) {
+            AssetRecord stockLabel = new AssetRecord();
+            stockLabel.setAssetType("<Stock / Mutual Fund / COD>");
+            stockLabel.setCost("");
+            assetRecords.add(stockLabel);
+        }
+        for (int i = 0; i < stockMutualFundCODRecords.size(); i++) {
+            AssetRecord assetRecord = new AssetRecord();
+            assetRecord.setAssetType(stockMutualFundCODRecords.get(i).getStockType());
+            assetRecord.setCost("$"+String.format("%,d", stockMutualFundCODRecords.get(i).getBuyingPrice()));
+            assetRecords.add(assetRecord);
+        }
+
+        AssetRecord blank = new AssetRecord();
+        blank.setAssetType("");
+        blank.setCost("");
+        assetRecords.add(blank);
+
+        final List<RealEstatesRecord> realEstatesRecords = dbHelper.getAllPurchasedRealEstates();
+        if (realEstatesRecords.size() > 0) {
+            AssetRecord realEstateLabel = new AssetRecord();
+            realEstateLabel.setAssetType("<Real Estate>");
+            realEstateLabel.setCost("");
+            assetRecords.add(realEstateLabel);
+        }
+        for (int i = 0; i < realEstatesRecords.size(); i++) {
+            AssetRecord assetRecord = new AssetRecord();
+            assetRecord.setAssetType(realEstatesRecords.get(i).getRealEstateType());
+            assetRecord.setCost("$"+String.format("%,d", realEstatesRecords.get(i).getCost()));
+            assetRecords.add(assetRecord);
+        }
+
+        assetRecords.add(blank);
+
+        final List<BusinessRecord> businessRecords = dbHelper.getAllPurchasedBusinesses();
+        if (businessRecords.size() > 0) {
+            AssetRecord businessLabel = new AssetRecord();
+            businessLabel.setAssetType("<Business>");
+            businessLabel.setCost("");
+            assetRecords.add(businessLabel);
+        }
+        for (int i = 0; i < businessRecords.size(); i++) {
+            AssetRecord assetRecord = new AssetRecord();
+            assetRecord.setAssetType(businessRecords.get(i).getBusinessType());
+            assetRecord.setCost("$"+String.format("%,d", businessRecords.get(i).getCost()));
+            assetRecords.add(assetRecord);
+        }
+
+        assetRecords.add(blank);
+
+        final List<GoldRecord> goldRecords = dbHelper.getAllPurchasedGolds();
+        if (goldRecords.size() > 0) {
+            AssetRecord goldLabel = new AssetRecord();
+            goldLabel.setAssetType("<Gold>");
+            goldLabel.setCost("");
+            assetRecords.add(goldLabel);
+        }
+        for (int i = 0; i < goldRecords.size(); i++) {
+            AssetRecord assetRecord = new AssetRecord();
+            assetRecord.setAssetType(goldRecords.get(i).getGoldType());
+            assetRecord.setCost(""+goldRecords.get(i).getGoldAmount());
+            assetRecords.add(assetRecord);
+        }
+
+        assetRecords.add(blank);
+        assetRecords.add(blank);
+
+        if(assetRecords.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "No record", Toast.LENGTH_SHORT).show();
+        }
+        AssetRecordAdapter adapter = new AssetRecordAdapter(this,
+                R.layout.activity_asset_record_adapter, assetRecords);
+
+        listViewRecords.setAdapter(adapter);
+    }
+
 }

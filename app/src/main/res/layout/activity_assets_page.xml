@@ -45,17 +45,21 @@
             android:layout_height="1dp"
             android:background="#3A3A3A"/>
 
-        <TextView
-            android:id="@+id/asset_detailTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:hint="No Assets on Record"
-            android:inputType="text"
-            android:textColorHint="#462C67"
-            android:textSize="18dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/asset_detailTV"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="30dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_marginBottom="15dp"-->
+<!--            android:hint="No Assets on Record"-->
+<!--            android:inputType="text"-->
+<!--            android:textColorHint="#462C67"-->
+<!--            android:textSize="18dp" />-->
+
+        <include
+            android:id="@+id/include2"
+            layout="@layout/asset_record_content"/>
 
         <View
             android:layout_width="wrap_content"
@@ -84,69 +88,5 @@
         android:background="@color/colorDivider"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
         tools:ignore="MissingConstraints" />
-
-
-    <!--    <EditText-->
-<!--        android:id="@+id/assetType"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="77dp"-->
-<!--        android:layout_marginEnd="102dp"-->
-<!--        android:layout_marginRight="102dp"-->
-<!--        android:ems="10"-->
-<!--        android:inputType="text"-->
-<!--        android:text="Type"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
-
-<!--    <EditText-->
-<!--        android:id="@+id/buyingPrice"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="39dp"-->
-<!--        android:layout_marginEnd="96dp"-->
-<!--        android:layout_marginRight="96dp"-->
-<!--        android:ems="10"-->
-<!--        android:inputType="number"-->
-<!--        android:text="Buying Price"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/assetType" />-->
-
-<!--    <EditText-->
-<!--        android:id="@+id/numOfShares"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="34dp"-->
-<!--        android:layout_marginEnd="99dp"-->
-<!--        android:layout_marginRight="99dp"-->
-<!--        android:ems="10"-->
-<!--        android:inputType="number"-->
-<!--        android:text="Num Of Shares"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/buyingPrice" />-->
-
-<!--    <EditText-->
-<!--        android:id="@+id/monthlyDividends"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="32dp"-->
-<!--        android:layout_marginEnd="93dp"-->
-<!--        android:layout_marginRight="93dp"-->
-<!--        android:ems="10"-->
-<!--        android:inputType="number"-->
-<!--        android:text="Monthly Dividends"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/numOfShares" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/nextButton"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="50dp"-->
-<!--        android:layout_marginEnd="158dp"-->
-<!--        android:layout_marginRight="158dp"-->
-<!--        android:text="Next"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/monthlyDividends" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
