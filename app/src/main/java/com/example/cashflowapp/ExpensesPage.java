@@ -61,16 +61,15 @@ public class ExpensesPage extends AppCompatActivity {
         expensescreditcardtv.setHint("Credit Card: $"+String.format("%,d", creditCardExpensesRecord.getExpensesAmount()));
         expensesmortgagetv.setHint("Mortgage: $"+String.format("%,d", mortgageExpensesRecord.getExpensesAmount()));
         expensesretaildebttv.setHint("Retail Debt: $"+String.format("%,d", retailDebtExpensesRecord.getExpensesAmount()));
-        System.out.println("-------> "+schoolLoanExpensesRecord.getExpensesType());
         if (schoolLoanExpensesRecord.getExpensesType() == null) {
-            expensesschoolloantv.setVisibility(TextView.INVISIBLE);
-            schoolLoanLabelTV.setVisibility(TextView.INVISIBLE);
+            expensesschoolloantv.setVisibility(TextView.GONE);
+            schoolLoanLabelTV.setVisibility(TextView.GONE);
         } else {
             expensesschoolloantv.setHint("School Loan: $"+String.format("%,d", schoolLoanExpensesRecord.getExpensesAmount()));
         }
         if (bankLoanExpensesRecord.getExpensesType() == null) {
-            expensesbankloantv.setVisibility(TextView.INVISIBLE);
-            bankLoanLabelTV.setVisibility(TextView.INVISIBLE);
+            expensesbankloantv.setVisibility(TextView.GONE);
+            bankLoanLabelTV.setVisibility(TextView.GONE);
         } else {
             expensesbankloantv.setHint("Bank Loan: $"+String.format("%,d", bankLoanExpensesRecord.getExpensesAmount()));
         }
