@@ -29,13 +29,13 @@
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/liabilities_credit_loanTV"
+            android:id="@+id/liability_TB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="15dp"
-            android:hint="CREDIT/LOANS"
+            android:hint="LIABILITIES"
             android:inputType="text"
             android:textColorHint="#4F4F50"
             android:textSize="18dp" />
@@ -45,76 +45,9 @@
             android:layout_height="1dp"
             android:background="#3A3A3A"/>
 
-        <TextView
-            android:id="@+id/liabilities_car_loanTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:hint="Car Loan"
-            android:inputType="text"
-            android:textColorHint="#462C67"
-            android:textSize="18dp" />
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:layout_marginLeft="20dp"
-            android:background="#3A3A3A"/>
-
-        <TextView
-            android:id="@+id/liabilities_credit_cardTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:hint="Credit Card"
-            android:inputType="text"
-            android:textColorHint="#462C67"
-            android:textSize="18dp" />
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:layout_marginLeft="20dp"
-            android:background="#3A3A3A"/>
-
-        <TextView
-            android:id="@+id/liabilities_mortgageTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:hint="Mortage"
-            android:inputType="text"
-            android:textColorHint="#462C67"
-            android:textSize="18dp" />
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:layout_marginLeft="20dp"
-            android:background="#3A3A3A"/>
-
-        <TextView
-            android:id="@+id/liabilities_retail_debtTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:hint="Retail Debt"
-            android:inputType="text"
-            android:textColorHint="#462C67"
-            android:textSize="18dp" />
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:background="#3A3A3A"/>
+        <include
+            android:id="@+id/include4"
+            layout="@layout/liability_record_content"/>
 
 
     </LinearLayout>

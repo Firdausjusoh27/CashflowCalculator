@@ -166,6 +166,44 @@
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:background="#3A3A3A"/>
+
+        <TextView
+            android:id="@+id/expenses_school_loanTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:hint="School Loan"
+            android:inputType="text"
+            android:textColorHint="#462C67"
+            android:textSize="18dp" />
+
+        <View
+            android:id="@+id/expenses_school_loanLabelTV"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:background="#3A3A3A"/>
+
+        <TextView
+            android:id="@+id/expenses_bank_loanTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:hint="Bank Loan"
+            android:inputType="text"
+            android:textColorHint="#462C67"
+            android:textSize="18dp" />
+
+        <View
+            android:id="@+id/expenses_bank_loanLabelTv"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
             android:background="#3A3A3A"/>
 
 

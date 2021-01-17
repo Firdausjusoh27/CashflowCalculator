@@ -152,6 +152,10 @@ public class Occupation extends AppCompatActivity {
                 savePlayerInfo(v);
                 deleteExpenses();
                 deleteLiabilities();
+                deleteStockMFCoD();
+                deleteRealEstate();
+                deleteBusiness();
+                deleteGold();
                 String profession = professiontv.getText().toString();
                 saveExpensesAndLiabilities(profession);
                 Intent intent = new Intent(Occupation.this, MainPage.class);
@@ -243,6 +247,38 @@ public class Occupation extends AppCompatActivity {
     public Integer deleteLiabilities() {
         DatabaseHelper dataSource = new DatabaseHelper(this);
         Integer rowDeleted = dataSource.deleteAllLiabilities();
+
+        this.finish();
+        return rowDeleted;
+    }
+
+    public Integer deleteBusiness() {
+        DatabaseHelper dataSource = new DatabaseHelper(this);
+        Integer rowDeleted = dataSource.deleteAllBusinesses();
+
+        this.finish();
+        return rowDeleted;
+    }
+
+    public Integer deleteGold() {
+        DatabaseHelper dataSource = new DatabaseHelper(this);
+        Integer rowDeleted = dataSource.deleteAllGolds();
+
+        this.finish();
+        return rowDeleted;
+    }
+
+    public Integer deleteRealEstate() {
+        DatabaseHelper dataSource = new DatabaseHelper(this);
+        Integer rowDeleted = dataSource.deleteAllRealEstates();
+
+        this.finish();
+        return rowDeleted;
+    }
+
+    public Integer deleteStockMFCoD() {
+        DatabaseHelper dataSource = new DatabaseHelper(this);
+        Integer rowDeleted = dataSource.deleteAllStockMutualFundCOD();
 
         this.finish();
         return rowDeleted;

@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CashFlowApp">
-        <activity android:name=".AssetRecord"></activity>
-        <activity android:name=".AssetRecordAdapter" />
+        <activity android:name=".IncomeRecord" />
+        <activity android:name=".AssetRecord" />
         <activity android:name=".StockReverseSplitPage" />
         <activity android:name=".StockSplitPage" />
         <activity android:name=".GoldSellPage" />

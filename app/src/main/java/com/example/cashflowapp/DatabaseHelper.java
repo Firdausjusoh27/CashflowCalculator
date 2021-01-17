@@ -16,7 +16,7 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "cash_flow_calculator.db";
 
     private static final String SQL_CREATE_PLAYER_INFO =
@@ -304,11 +304,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = database.query(Expenses.Expense.TABLE_NAME, expensesAllColumn, "expenses_type = ?",
                 new String[] { expensesTye }, null, null, null);
 
-        cursor.moveToFirst();
-
-        record.setId(cursor.getInt(0));
-        record.setExpensesType(cursor.getString(1));
-        record.setExpensesAmount(cursor.getInt(2));
+        if (cursor!=null && cursor.getCount()>0) {
+            cursor.moveToFirst();
+            record.setId(cursor.getInt(0));
+            record.setExpensesType(cursor.getString(1));
+            record.setExpensesAmount(cursor.getInt(2));
+        }
         return record;
     }
 
