@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -23,7 +25,7 @@ import android.widget.Toast;
 public class Occupation extends AppCompatActivity {
 
     private TextView professiontv, dreamtv, auditor;
-    private Button startBtn;
+    private Button startBtn, cancelBtn;
     private String myText;
     static String[] professions = {"Doctor", "Lawyer", "Mechanic", "Nurse", "Police", "Secretary", "Janitor"};
     static String[] dreams = {"Buy a Forest", "Be a Jet-Setter", "African Photo Safari", "Gift of Faith"};
@@ -36,6 +38,8 @@ public class Occupation extends AppCompatActivity {
         setContentView(R.layout.activity_occupation);
         databaseHelper = new DatabaseHelper(this);
         ActionBar actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#431B3F"));
+        actionBar.setBackgroundDrawable(colorDrawable);
         actionBar.setTitle("  CashFlow Apps");
         actionBar.setIcon(R.drawable.cash_2);
         actionBar.setDisplayUseLogoEnabled(true);
@@ -159,6 +163,17 @@ public class Occupation extends AppCompatActivity {
                 String profession = professiontv.getText().toString();
                 saveExpensesAndLiabilities(profession);
                 Intent intent = new Intent(Occupation.this, MainPage.class);
+                startActivity(intent);
+            }
+        });
+
+
+        cancelBtn = findViewById(R.id.cancel_button);
+        cancelBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Occupation.this, Occupation.class);
                 startActivity(intent);
             }
         });

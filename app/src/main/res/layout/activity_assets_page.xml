@@ -19,10 +19,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Asset Page"
+            android:text="Your Asset"
+            android:textStyle="bold|italic"
+            android:textColor="#6200ee"
             android:textSize="35sp"
             android:layout_marginTop="30dp"
-            android:textColor="#462C67"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -57,6 +58,7 @@
 <!--            android:textColorHint="#462C67"-->
 <!--            android:textSize="18dp" />-->
 
+<!--        Back end team list view-->
         <include
             android:id="@+id/include2"
             layout="@layout/asset_record_content"/>

@@ -5,6 +5,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -17,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IncomePage extends AppCompatActivity {
+
+//    Start : UI Team Navigation & Item Display
     DatabaseHelper dbHelper;
     ListView listViewRecords;
 
@@ -88,6 +92,8 @@ public class IncomePage extends AppCompatActivity {
         });
 
     }
+
+    //    End : UI Team Navigation & Item Display
 
     @Override
     protected void onResume() {

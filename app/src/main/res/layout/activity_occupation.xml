@@ -1,103 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".Occupation">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="50dp"
-        android:text="Choose Your Destiny"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/grey" />
-
-    <TextView
-        android:id="@+id/professionTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:textColor="#462C67"
-        android:hint="Profession"
-        android:inputType="text"
-        android:textSize="20dp" />
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/grey" />
-
-    <TextView
-        android:id="@+id/dreamTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:textColor="#462C67"
-        android:hint="Dream"
-        android:inputType="text"
-        android:textSize="20dp" />
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/grey" />
-
-    <TextView
-        android:id="@+id/auditorTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:textColor="#462C67"
-        android:layout_marginTop="20dp"
-        android:hint="Auditor (Person To The Right)"
-        android:inputType="text"
-        android:textSize="20dp" />
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/grey" />
-
     <LinearLayout
+        android:layout_marginTop="70dp"
+        android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <Button
-            android:id="@+id/cancel_button"
+        <View
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Cancel" />
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorDivider"/>
 
-        <Button
-            android:id="@+id/start_button"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/professionTV"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Start" />
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:hint="Profession"
+            android:textStyle="bold"
+            android:textColor="#431B3F"
+            android:textColorHint="@color/grey"
+            android:inputType="text"
+            android:textSize="20dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorDivider" />
+
+        <TextView
+            android:id="@+id/dreamTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textColor="#431B3F"
+            android:textColorHint="@color/grey"
+            android:hint="Dream"
+            android:inputType="text"
+            android:textSize="20dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorDivider" />
+
+        <TextView
+            android:id="@+id/auditorTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:textColor="#431B3F"
+            android:textColorHint="@color/grey"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:hint="Auditor (Person To The Right)"
+            android:inputType="text"
+            android:textSize="20dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorDivider" />
+
+        <LinearLayout
+            app:layout_constraintTop_toBottomOf="@+id/layout1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <Button
+                android:id="@+id/cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/grey"
+                android:text="Cancel" />
+
+            <Button
+                android:id="@+id/start_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/teal_200"
+                android:layout_margin="10dp"
+                android:text="Start" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
 
-</LinearLayout>
+
+    <View
+        android:id="@+id/wave_view"
+        android:layout_width="1000dp"
+        android:layout_height="270dp"
+        android:background="@drawable/ic_purplewave"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/Destiny_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Choose Your Destiny"
+        android:textStyle="italic"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/wave_view"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

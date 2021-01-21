@@ -19,10 +19,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Liabilities Page"
+            android:text="Your Liabilities"
+            android:textStyle="bold|italic"
+            android:textColor="#6200ee"
             android:textSize="35sp"
             android:layout_marginTop="20dp"
-            android:textColor="#462C67"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -45,6 +46,8 @@
             android:layout_height="1dp"
             android:background="#3A3A3A"/>
 
+
+<!--        BackEnd Team Display List From Database-->
         <include
             android:id="@+id/include4"
             layout="@layout/liability_record_content"/>

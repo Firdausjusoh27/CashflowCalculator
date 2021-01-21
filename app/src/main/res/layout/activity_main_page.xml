@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/cfButton_6">
 
         <TextView
@@ -18,14 +20,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="5dp"
             android:textSize="40dp" />
 
         <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/progressbar"
-            android:layout_margin="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:scaleY="5"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
 
@@ -51,8 +56,10 @@
                 android:id="@+id/buyButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_addshop"
                 android:text="BUY"
-                android:textSize="25dp"
+                android:textSize="18dp"
+                android:textStyle="italic|bold"
                 android:layout_margin="3dp"
                 android:textColor="@color/white"
                 android:layout_weight="1"
@@ -62,8 +69,10 @@
                 android:id="@+id/sellButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_sell"
                 android:text="SELL"
-                android:textSize="25dp"
+                android:textStyle="italic|bold"
+                android:textSize="18dp"
                 android:layout_margin="3dp"
                 android:textColor="@color/white"
                 android:layout_weight="1"
@@ -74,7 +83,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="LOAN"
-                android:textSize="25dp"
+                android:textStyle="italic|bold"
+                android:drawableLeft="@drawable/ic_laon"
+                android:textSize="18dp"
                 android:layout_margin="3dp"
                 android:textColor="@color/white"
                 android:layout_weight="1"
