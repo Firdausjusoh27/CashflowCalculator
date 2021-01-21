@@ -558,4 +558,19 @@ public class MainPage extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.logout){
+            Toast.makeText(this,"Reset Game", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainPage.this, Occupation.class);
+            startActivity(intent);
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }
