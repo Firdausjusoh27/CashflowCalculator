@@ -41,9 +41,10 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
-            android:hint="Salary"
-            android:textColorHint="#462C67"
-            android:textSize="20dp" />
+            android:textStyle="bold"
+            android:hint="SALARY"
+            android:textColorHint="#682C63"
+            android:textSize="25sp" />
 
         <View
             android:layout_width="wrap_content"
@@ -57,10 +58,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="15dp"
+            android:textStyle="bold"
             android:layout_marginBottom="15dp"
-            android:hint="Total Passive"
-            android:textColorHint="#462C67"
-            android:textSize="20dp" />
+            android:hint="TOTAL PASSIVE"
+            android:textColorHint="#682C63"
+            android:textSize="25sp" />
 
         <View
             android:layout_width="wrap_content"
@@ -69,6 +71,9 @@
 
         <include
             android:id="@+id/include3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             layout="@layout/income_record_content"/>
 
     </LinearLayout>

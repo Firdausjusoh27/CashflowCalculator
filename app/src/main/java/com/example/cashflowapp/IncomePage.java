@@ -47,10 +47,10 @@ public class IncomePage extends AppCompatActivity {
         PlayerInfoRecord playerInfoRecord = dbHelper.getPlayerInfo();
 
         int salary = playerInfoRecord.getSalary();
-        salarytv.setHint("Salary: $"+String.format("%,d", salary));
+        salarytv.setHint("SALARY: $"+String.format("%,d", salary));
 
         int totalPassiveIncome = dbHelper.getCashFlow();
-        totalpassivetv.setHint("Total Passive: $"+String.format("%,d", totalPassiveIncome));
+        totalpassivetv.setHint("TOTAL PASSIVE: $"+String.format("%,d", totalPassiveIncome));
 
 
         //        Initialize and assign Variable
@@ -110,7 +110,7 @@ public class IncomePage extends AppCompatActivity {
         final List<StockMutualFundCODRecord> stockMutualFundCODRecords = dbHelper.getAllPurchasedStocks();
         if (stockMutualFundCODRecords.size() > 0) {
             IncomeRecord stockLabel = new IncomeRecord();
-            stockLabel.setAssetType("<Interest / Dividends>");
+            stockLabel.setAssetType("INTERESTS / DIVIDENDS");
             stockLabel.setCashFlowAmount("");
             incomeRecords.add(stockLabel);
         }
@@ -137,7 +137,7 @@ public class IncomePage extends AppCompatActivity {
         final List<RealEstatesRecord> realEstatesRecords = dbHelper.getAllPurchasedRealEstates();
         if (realEstatesRecords.size() > 0) {
             IncomeRecord realEstateLabel = new IncomeRecord();
-            realEstateLabel.setAssetType("<Real Estate>");
+            realEstateLabel.setAssetType("REAL ESTATE");
             realEstateLabel.setCashFlowAmount("");
             incomeRecords.add(realEstateLabel);
         }
@@ -153,7 +153,7 @@ public class IncomePage extends AppCompatActivity {
         final List<BusinessRecord> businessRecords = dbHelper.getAllPurchasedBusinesses();
         if (businessRecords.size() > 0) {
             IncomeRecord businessLabel = new IncomeRecord();
-            businessLabel.setAssetType("<Business>");
+            businessLabel.setAssetType("BUSINESS");
             businessLabel.setCashFlowAmount("");
             incomeRecords.add(businessLabel);
         }

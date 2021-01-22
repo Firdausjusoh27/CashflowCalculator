@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -89,7 +90,7 @@ public class LiabilitiesPage extends AppCompatActivity {
         final List<LiabilityRecord> liabilityRecords = dbHelper.getAllLoansToPay();
         if (liabilityRecords.size() > 0) {
             AssetRecord basicLoanLabel = new AssetRecord();
-            basicLoanLabel.setAssetType("<Credit / Loans>");
+            basicLoanLabel.setAssetType("CREDIT/LOANS ");
             basicLoanLabel.setCost("");
             assetRecords.add(basicLoanLabel);
         }
@@ -108,7 +109,7 @@ public class LiabilitiesPage extends AppCompatActivity {
         final List<RealEstatesRecord> realEstatesRecords = dbHelper.getAllPurchasedRealEstates();
         if (realEstatesRecords.size() > 0) {
             AssetRecord realEstateLabel = new AssetRecord();
-            realEstateLabel.setAssetType("<Real Estate>");
+            realEstateLabel.setAssetType("REAL ESTATE");
             realEstateLabel.setCost("");
             assetRecords.add(realEstateLabel);
         }
@@ -124,7 +125,7 @@ public class LiabilitiesPage extends AppCompatActivity {
         final List<BusinessRecord> businessRecords = dbHelper.getAllPurchasedBusinesses();
         if (businessRecords.size() > 0) {
             AssetRecord businessLabel = new AssetRecord();
-            businessLabel.setAssetType("<Business>");
+            businessLabel.setAssetType("BUSINESS");
             businessLabel.setCost("");
             assetRecords.add(businessLabel);
         }

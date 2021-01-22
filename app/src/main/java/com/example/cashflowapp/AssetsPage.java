@@ -94,7 +94,7 @@ public class AssetsPage extends AppCompatActivity {
         final List<StockMutualFundCODRecord> stockMutualFundCODRecords = dbHelper.getAllPurchasedStocks();
         if (stockMutualFundCODRecords.size() > 0) {
             AssetRecord stockLabel = new AssetRecord();
-            stockLabel.setAssetType("<Stock / Mutual Fund / COD>");
+            stockLabel.setAssetType("STOCK/MUTUAL FUND/COD");
             stockLabel.setCost("");
             assetRecords.add(stockLabel);
         }
@@ -113,7 +113,7 @@ public class AssetsPage extends AppCompatActivity {
         final List<RealEstatesRecord> realEstatesRecords = dbHelper.getAllPurchasedRealEstates();
         if (realEstatesRecords.size() > 0) {
             AssetRecord realEstateLabel = new AssetRecord();
-            realEstateLabel.setAssetType("<Real Estate>");
+            realEstateLabel.setAssetType("REAL ESTATE");
             realEstateLabel.setCost("");
             assetRecords.add(realEstateLabel);
         }
@@ -129,7 +129,7 @@ public class AssetsPage extends AppCompatActivity {
         final List<BusinessRecord> businessRecords = dbHelper.getAllPurchasedBusinesses();
         if (businessRecords.size() > 0) {
             AssetRecord businessLabel = new AssetRecord();
-            businessLabel.setAssetType("<Business>");
+            businessLabel.setAssetType("BUSINESS");
             businessLabel.setCost("");
             assetRecords.add(businessLabel);
         }
@@ -145,7 +145,7 @@ public class AssetsPage extends AppCompatActivity {
         final List<GoldRecord> goldRecords = dbHelper.getAllPurchasedGolds();
         if (goldRecords.size() > 0) {
             AssetRecord goldLabel = new AssetRecord();
-            goldLabel.setAssetType("<Gold>");
+            goldLabel.setAssetType("GOLD");
             goldLabel.setCost("");
             assetRecords.add(goldLabel);
         }

@@ -29,27 +29,13 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:id="@+id/liability_TB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="15dp"
-            android:hint="LIABILITIES"
-            android:inputType="text"
-            android:textColorHint="#4F4F50"
-            android:textSize="18dp" />
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:background="#3A3A3A"/>
-
 
 <!--        BackEnd Team Display List From Database-->
         <include
             android:id="@+id/include4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             layout="@layout/liability_record_content"/>
 
 
