@@ -32,6 +32,8 @@ public class IncomePage extends AppCompatActivity {
         setContentView(R.layout.activity_income_page);
         dbHelper = new DatabaseHelper(this);
         ActionBar actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#FF51214D"));
+        actionBar.setBackgroundDrawable(colorDrawable);
         actionBar.setTitle("  CashFlow Apps");
         actionBar.setIcon(R.drawable.cash_2);
         actionBar.setDisplayUseLogoEnabled(true);

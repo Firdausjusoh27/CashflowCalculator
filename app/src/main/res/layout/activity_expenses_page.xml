@@ -21,7 +21,7 @@
             android:layout_gravity="center"
             android:text="Your Expenses"
             android:textStyle="bold|italic"
-            android:textColor="#6200ee"
+            android:textColor="#682C63"
             android:textSize="35sp"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -222,6 +222,8 @@
         app:itemIconSize="32dp"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:itemTextColor="@drawable/bottom_navigation_selector"
         app:menu="@menu/navigation_menu"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" />

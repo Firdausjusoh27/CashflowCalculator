@@ -57,11 +57,20 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/stock_reverse_split_button_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Cancel"
+            android:backgroundTint="@color/grey"/>
+
+        <Button
             android:id="@+id/stock_reverse_split_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Reverse Split" />
+            android:text="Reverse Split"
+            android:backgroundTint="@color/teal_200"/>
 
     </LinearLayout>
 </LinearLayout>

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,7 +23,7 @@ public class GoldSellPage extends AppCompatActivity {
 
     private TextView goldtypetv, purchasepricelabeltv, ownnumberlabeltv, cashearnedtv;
     private EditText sellingpricetv, amounttoselltv;
-    private Button sellGoldBtn;
+    private Button sellGoldBtn, sellGoldCancelBtn;
 
     DatabaseHelper databaseHelper;
     GoldRecord goldSelected;
@@ -33,6 +35,8 @@ public class GoldSellPage extends AppCompatActivity {
         setContentView(R.layout.activity_gold_sell_page);
         databaseHelper = new DatabaseHelper(this);
         ActionBar actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#FF51214D"));
+        actionBar.setBackgroundDrawable(colorDrawable);
         actionBar.setTitle("  CashFlow Apps");
         actionBar.setIcon(R.drawable.cash_2);
         actionBar.setDisplayUseLogoEnabled(true);
@@ -128,6 +132,17 @@ public class GoldSellPage extends AppCompatActivity {
                     totalCashEarn = sellingPrice * amountToSell;
                     cashearnedtv.setHint("Cash to be earned: $"+String.format("%,d", totalCashEarn));
                 }
+            }
+        });
+
+        //        Cancel Button
+        sellGoldCancelBtn = findViewById(R.id.gold_sell_cancel);
+        sellGoldCancelBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GoldSellPage.this, MainPage.class);
+                startActivity(intent);
+
             }
         });
 

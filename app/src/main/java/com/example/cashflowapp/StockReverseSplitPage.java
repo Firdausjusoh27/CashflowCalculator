@@ -5,6 +5,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -54,6 +56,8 @@ public class StockReverseSplitPage extends AppCompatActivity {
         setContentView(R.layout.activity_stock_reverse_split_page);
         databaseHelper = new DatabaseHelper(this);
         ActionBar actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#FF51214D"));
+        actionBar.setBackgroundDrawable(colorDrawable);
         actionBar.setTitle("  CashFlow Apps");
         actionBar.setIcon(R.drawable.cash_2);
         actionBar.setDisplayUseLogoEnabled(true);

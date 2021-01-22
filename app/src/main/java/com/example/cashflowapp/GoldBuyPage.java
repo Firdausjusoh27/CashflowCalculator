@@ -5,6 +5,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,7 +19,7 @@ import android.widget.Toast;
 public class GoldBuyPage extends AppCompatActivity {
 
     private TextView goldtypetv, cashonhandtv;
-    private Button buyGoldBtn;
+    private Button buyGoldBtn, buyGoldCancelBtn;
     static String[] goldTypeList = {"Spanish Gold", "Krugerrands"};
 
     DatabaseHelper databaseHelper;
@@ -28,6 +30,8 @@ public class GoldBuyPage extends AppCompatActivity {
         setContentView(R.layout.activity_gold_buy_page);
         databaseHelper = new DatabaseHelper(this);
         ActionBar actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#FF51214D"));
+        actionBar.setBackgroundDrawable(colorDrawable);
         actionBar.setTitle("  CashFlow Apps");
         actionBar.setIcon(R.drawable.cash_2);
         actionBar.setDisplayUseLogoEnabled(true);
@@ -62,6 +66,18 @@ public class GoldBuyPage extends AppCompatActivity {
                 });
 
                 dialog.show();
+
+            }
+        });
+
+
+        //        Cancel Button
+        buyGoldCancelBtn = findViewById(R.id.gold_buy_cancel);
+        buyGoldCancelBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GoldBuyPage.this, MainPage.class);
+                startActivity(intent);
 
             }
         });

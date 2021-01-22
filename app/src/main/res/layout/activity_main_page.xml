@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginBottom="15dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/cfButton_6">
@@ -21,18 +22,37 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:textColor="#682C63"
             android:textSize="40dp" />
 
-        <ProgressBar
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/progressbar"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:scaleY="5"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+            android:orientation="horizontal">
+            <ProgressBar
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressbar"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="20dp"
+                android:scaleY="4"
+                android:layout_weight="4.5"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+
+            <TextView
+                android:id="@+id/progressTV_percent"
+                android:layout_width="0dp"
+                android:layout_marginRight="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:textStyle="bold"
+                android:textColor="#682C63" />
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
@@ -49,13 +69,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_margin="3dp">
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:gravity="center">
 
             <Button
                 android:id="@+id/buyButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:drawableLeft="@drawable/ic_addshop"
                 android:text="BUY"
                 android:textSize="18dp"
@@ -63,12 +85,12 @@
                 android:layout_margin="3dp"
                 android:textColor="@color/white"
                 android:layout_weight="1"
-                android:background="#5E4181"/>
+                android:backgroundTint="#682C63"/>
 
             <Button
                 android:id="@+id/sellButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:drawableLeft="@drawable/ic_sell"
                 android:text="SELL"
                 android:textStyle="italic|bold"
@@ -76,12 +98,12 @@
                 android:layout_margin="3dp"
                 android:textColor="@color/white"
                 android:layout_weight="1"
-                android:background="#5E4181"/>
+                android:backgroundTint="#682C63"/>
 
             <Button
                 android:id="@+id/loanButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:text="LOAN"
                 android:textStyle="italic|bold"
                 android:drawableLeft="@drawable/ic_laon"
@@ -89,7 +111,7 @@
                 android:layout_margin="3dp"
                 android:textColor="@color/white"
                 android:layout_weight="1"
-                android:background="#5E4181"/>
+                android:backgroundTint="#682C63"/>
         </LinearLayout>
 
         <LinearLayout
@@ -98,40 +120,41 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_margin="3dp">
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp">
 
             <Button
                 android:id="@+id/marketActionButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:text="Market Action"
                 android:layout_margin="3dp"
                 android:textSize="12dp"
                 android:textColor="@color/white"
                 android:layout_weight="1"
-                android:background="#5E4181"/>
+                android:backgroundTint="#682C63"/>
 
             <Button
                 android:id="@+id/payButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:text="Pay"
                 android:textSize="13dp"
                 android:layout_margin="3dp"
                 android:textColor="@color/white"
                 android:layout_weight="1"
-                android:background="#5E4181"/>
+                android:backgroundTint="#682C63"/>
 
             <Button
                 android:id="@+id/collectButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:text="Collect"
                 android:textSize="13dp"
                 android:layout_margin="3dp"
                 android:textColor="@color/white"
                 android:layout_weight="1"
-                android:background="#5E4181"/>
+                android:backgroundTint="#682C63"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -151,6 +174,7 @@
             android:layout_marginBottom="18dp"
             android:hint="Cash On Hand"
             android:inputType="text"
+            android:textStyle="italic|bold"
             android:textColorHint="#462C67"
             android:textSize="20dp" />
 
@@ -169,6 +193,7 @@
             android:layout_marginBottom="18dp"
             android:hint="CashFlow"
             android:inputType="text"
+            android:textStyle="italic|bold"
             android:textColorHint="#462C67"
             android:textSize="20dp" />
 
@@ -184,6 +209,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:hint="Expenses"
+            android:textStyle="italic|bold"
             android:layout_marginTop="18dp"
             android:layout_marginBottom="18dp"
             android:textColorHint="#462C67"
@@ -204,6 +230,7 @@
             android:layout_marginTop="18dp"
             android:layout_marginBottom="18dp"
             android:hint="Total Income"
+            android:textStyle="italic|bold"
             android:textColorHint="#462C67"
             android:inputType="text"
             android:textSize="20dp" />
@@ -223,6 +250,7 @@
             android:layout_marginBottom="18dp"
             android:hint="PAYDAY"
             android:inputType="text"
+            android:textStyle="italic|bold"
             android:textColorHint="#462C67"
             android:textSize="20dp" />
 
@@ -243,6 +271,8 @@
         app:itemIconSize="32dp"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:itemTextColor="@drawable/bottom_navigation_selector"
         app:menu="@menu/navigation_menu"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" />

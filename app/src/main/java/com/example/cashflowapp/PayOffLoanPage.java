@@ -5,6 +5,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,7 +23,7 @@ public class PayOffLoanPage extends AppCompatActivity {
 
     private TextView payoffloantypetv, cashonhandtv, owetobanktv, monthlypaymenttv;
     private EditText payloanamounttv;
-    private Button payOffLoanBtn;
+    private Button payOffLoanBtn, payOffLoanCancelBtn;
 
     DatabaseHelper databaseHelper;
     LiabilityRecord liabilitySelected;
@@ -33,6 +35,8 @@ public class PayOffLoanPage extends AppCompatActivity {
         setContentView(R.layout.activity_pay_off_loan_page);
         databaseHelper = new DatabaseHelper(this);
         ActionBar actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#FF51214D"));
+        actionBar.setBackgroundDrawable(colorDrawable);
         actionBar.setTitle("  CashFlow Apps");
         actionBar.setIcon(R.drawable.cash_2);
         actionBar.setDisplayUseLogoEnabled(true);
@@ -84,6 +88,17 @@ public class PayOffLoanPage extends AppCompatActivity {
                 });
 
                 dialog.show();
+
+            }
+        });
+
+        //        Cancel Button
+        payOffLoanCancelBtn = findViewById(R.id.pay_off_loan_cancel);
+        payOffLoanCancelBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PayOffLoanPage.this, MainPage.class);
+                startActivity(intent);
 
             }
         });

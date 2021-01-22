@@ -35,7 +35,7 @@ import java.util.List;
 
 public class MainPage extends AppCompatActivity {
     private ProgressBar cashPB;
-    private TextView textViewProfession, textViewCashOnHand, textViewCashFlow, textViewExpenses, textViewSalary, textViewPayDay;
+    private TextView textViewProfession, textViewCashOnHand, textViewCashFlow, textViewExpenses, textViewSalary, textViewPayDay ,UpdateProressTV;
     private Button buyBtn, sellBtn, loanBtn, marketActionBtn, payBtn, collectBtn;
     static String[] assetTypeList = {"Stock", "Real Estate", "Business", "Gold"};
     static String[] collectTypeList = {"Collect Money", "PAYDAY"};
@@ -73,11 +73,14 @@ public class MainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         ActionBar actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#FF51214D"));
+        actionBar.setBackgroundDrawable(colorDrawable);
         actionBar.setTitle("  CashFlow Apps");
         actionBar.setIcon(R.drawable.cash_2);
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
         cashPB = findViewById(R.id.progressbar);
+        UpdateProressTV = findViewById(R.id.progressTV_percent);
 
         DatabaseHelper dataSource = new DatabaseHelper(this);
 
@@ -90,6 +93,7 @@ public class MainPage extends AppCompatActivity {
         if (progressPercentage > 100)
             progressPercentage = 100;
         cashPB.setProgress(progressPercentage, true);
+        UpdateProressTV.setText(String.format("%, d", progressPercentage) + "%" );
 
         textViewProfession = (TextView)findViewById(R.id.ProfessionTV);
         textViewProfession.setText(playerInfoRecord.getProfession());

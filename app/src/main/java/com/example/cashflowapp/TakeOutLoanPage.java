@@ -5,6 +5,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,7 +20,7 @@ import android.widget.Toast;
 public class TakeOutLoanPage extends AppCompatActivity {
 
     private EditText takeoutloantv;
-    private Button takeOutLoanBtn;
+    private Button takeOutLoanBtn, takeOutLoanCancelBtn;
 
     DatabaseHelper databaseHelper;
 
@@ -28,12 +30,25 @@ public class TakeOutLoanPage extends AppCompatActivity {
         setContentView(R.layout.activity_take_out_loan_page);
         databaseHelper = new DatabaseHelper(this);
         ActionBar actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#FF51214D"));
+        actionBar.setBackgroundDrawable(colorDrawable);
         actionBar.setTitle("  CashFlow Apps");
         actionBar.setIcon(R.drawable.cash_2);
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
         takeoutloantv = findViewById(R.id.takeOutLoanAmountTV);
+
+        //        Cancel Button
+        takeOutLoanCancelBtn = findViewById(R.id.take_out_loan_button_cancel);
+        takeOutLoanCancelBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TakeOutLoanPage.this, MainPage.class);
+                startActivity(intent);
+
+            }
+        });
 
 //        Button Take Out Loan
 

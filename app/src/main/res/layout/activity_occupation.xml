@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/grey"
-                android:text="Cancel" />
+                android:text="Clear" />
 
             <Button
                 android:id="@+id/start_button"

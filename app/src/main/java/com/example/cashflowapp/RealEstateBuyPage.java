@@ -5,6 +5,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,7 +21,7 @@ public class RealEstateBuyPage extends AppCompatActivity {
 
     private TextView realestatetypetv, numofunitlabeltv, cashonhandtv;
     private EditText costtv, downpaymenttv, cashflowtv, numberofunitstv;
-    private Button buyRealEstateBtn;
+    private Button buyRealEstateBtn, buyRealEstateCancelBtn;
     static String[] realEstateTypeList = {"Condo 2Br/1Ba", "House 3Br/2Ba", "Duplex", "4-plex", "8-plex", "Apartment Complex", "Land - 10 Acres", "Land - 20 Acres"};
 
     DatabaseHelper databaseHelper;
@@ -30,6 +32,8 @@ public class RealEstateBuyPage extends AppCompatActivity {
         setContentView(R.layout.activity_real_estate_buy_page);
         databaseHelper = new DatabaseHelper(this);
         ActionBar actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#FF51214D"));
+        actionBar.setBackgroundDrawable(colorDrawable);
         actionBar.setTitle("  CashFlow Apps");
         actionBar.setIcon(R.drawable.cash_2);
         actionBar.setDisplayUseLogoEnabled(true);
@@ -78,6 +82,17 @@ public class RealEstateBuyPage extends AppCompatActivity {
                 });
 
                 dialog.show();
+
+            }
+        });
+
+        //        Cancel Button
+        buyRealEstateCancelBtn = findViewById(R.id.realEstate_buy_cancel);
+        buyRealEstateCancelBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RealEstateBuyPage.this, MainPage.class);
+                startActivity(intent);
 
             }
         });

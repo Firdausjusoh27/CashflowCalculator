@@ -5,6 +5,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,7 +23,7 @@ public class RealEstateSellPage extends AppCompatActivity {
 
     private TextView realestatetypetv, owedtobanklabeltv, cashflowlabeltv, cashearnedtv;
     private EditText sellingpricetv;
-    private Button sellRealEstateBtn;
+    private Button sellRealEstateBtn, sellRealEstateCancelBtn;
 
     DatabaseHelper databaseHelper;
     RealEstatesRecord realEstateSelected;
@@ -32,6 +34,8 @@ public class RealEstateSellPage extends AppCompatActivity {
         setContentView(R.layout.activity_real_estate_sell_page);
         databaseHelper = new DatabaseHelper(this);
         ActionBar actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#FF51214D"));
+        actionBar.setBackgroundDrawable(colorDrawable);
         actionBar.setTitle("  CashFlow Apps");
         actionBar.setIcon(R.drawable.cash_2);
         actionBar.setDisplayUseLogoEnabled(true);
@@ -107,6 +111,17 @@ public class RealEstateSellPage extends AppCompatActivity {
                     }
                     cashearnedtv.setHint("Cash to be earned: $"+String.format("%,d", totalCashEarn));
                 }
+            }
+        });
+
+        //        Cancel Button
+        sellRealEstateCancelBtn = findViewById(R.id.realEstate_sell_cancel);
+        sellRealEstateCancelBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RealEstateSellPage.this, MainPage.class);
+                startActivity(intent);
+
             }
         });
 

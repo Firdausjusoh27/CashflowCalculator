@@ -49,11 +49,20 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/take_out_loan_button_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Cancel"
+            android:backgroundTint="@color/grey"/>
+
+        <Button
             android:id="@+id/take_out_loan_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Take Out Loan" />
+            android:text="Take Out Loan"
+            android:backgroundTint="@color/teal_200"/>
 
     </LinearLayout>
 </LinearLayout>

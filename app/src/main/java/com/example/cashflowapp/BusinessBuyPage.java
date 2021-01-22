@@ -5,6 +5,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,7 +21,7 @@ public class BusinessBuyPage extends AppCompatActivity {
 
     private TextView businesstypetv, cashonhandtv;
     private EditText costtv, downpaymenttv, cashflowtv;
-    private Button buyBusinessBtn;
+    private Button buyBusinessBtn, buyBusinessCancelBtn;
     static String[] businessTypeList = {"Auto Dealer", "Auto Wash", "Bed and Breakfast", "Car Wash", "Coin Telephone", "Doctor Office", "Laundromat", "Pinball Machines",
     "Pizza Chain", "Pizza Franchise", "Sandwich Shop", "Shopping Mall", "Software Company", "Widget Company"};
 
@@ -31,6 +33,8 @@ public class BusinessBuyPage extends AppCompatActivity {
         setContentView(R.layout.activity_business_buy_page);
         databaseHelper = new DatabaseHelper(this);
         ActionBar actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#FF51214D"));
+        actionBar.setBackgroundDrawable(colorDrawable);
         actionBar.setTitle("  CashFlow Apps");
         actionBar.setIcon(R.drawable.cash_2);
         actionBar.setDisplayUseLogoEnabled(true);
@@ -68,6 +72,17 @@ public class BusinessBuyPage extends AppCompatActivity {
                 });
 
                 dialog.show();
+
+            }
+        });
+
+        //        Cancel Button
+        buyBusinessCancelBtn = findViewById(R.id.business_buy_cancel);
+        buyBusinessCancelBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BusinessBuyPage.this, MainPage.class);
+                startActivity(intent);
 
             }
         });

@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -21,7 +23,7 @@ public class StockMutualFundCODBuyPage extends AppCompatActivity {
 
     private TextView stocktypetv, dividendlabeltv, interestlabeltv, totalpricetv, cashonhandtv;
     private EditText buyingpricetv, numberofsharetv, monthlydividendtv, monthlyinteresttv;
-    private Button buyStockBtn;
+    private Button buyStockBtn, buyStockCancelBtn;
     static String[] stockTypeList = {"2BIG", "Certificate of Deposit", "GRO4US", "OK4U", "ON2U", "MYT4U"};
 
     DatabaseHelper databaseHelper;
@@ -32,6 +34,8 @@ public class StockMutualFundCODBuyPage extends AppCompatActivity {
         setContentView(R.layout.activity_stock_mutual_fund_c_o_d_buy_page);
         databaseHelper = new DatabaseHelper(this);
         ActionBar actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#FF51214D"));
+        actionBar.setBackgroundDrawable(colorDrawable);
         actionBar.setTitle("  CashFlow Apps");
         actionBar.setIcon(R.drawable.cash_2);
         actionBar.setDisplayUseLogoEnabled(true);
@@ -132,6 +136,17 @@ public class StockMutualFundCODBuyPage extends AppCompatActivity {
             }
         });
 
+        //        Cancel Button
+        buyStockCancelBtn = findViewById(R.id.buy_cancel_button);
+        buyStockCancelBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StockMutualFundCODBuyPage.this, MainPage.class);
+                startActivity(intent);
+
+            }
+        });
+
 //        Button Buy Stock
 
         buyStockBtn = findViewById(R.id.buy_button);
@@ -158,6 +173,8 @@ public class StockMutualFundCODBuyPage extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 
 

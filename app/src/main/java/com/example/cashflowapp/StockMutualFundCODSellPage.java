@@ -5,6 +5,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,7 +23,7 @@ public class StockMutualFundCODSellPage extends AppCompatActivity {
 
     private TextView stocktypetv, purchasepricelabeltv, ownnumberlabeltv, cashearnedtv;
     private EditText sellingpricetv, numberofsharetv;
-    private Button sellStockBtn;
+    private Button sellStockBtn,  sellStockCancelBtn;
 
     DatabaseHelper databaseHelper;
     StockMutualFundCODRecord stockSelected;
@@ -33,6 +35,8 @@ public class StockMutualFundCODSellPage extends AppCompatActivity {
         setContentView(R.layout.activity_stock_mutual_fund_c_o_d_sell_page);
         databaseHelper = new DatabaseHelper(this);
         ActionBar actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#FF51214D"));
+        actionBar.setBackgroundDrawable(colorDrawable);
         actionBar.setTitle("  CashFlow Apps");
         actionBar.setIcon(R.drawable.cash_2);
         actionBar.setDisplayUseLogoEnabled(true);
@@ -122,6 +126,18 @@ public class StockMutualFundCODSellPage extends AppCompatActivity {
                     totalCashEarn = sellingPrice * numberOfShares;
                     cashearnedtv.setHint("Cash to be earned: $"+String.format("%,d", totalCashEarn));
                 }
+            }
+        });
+
+
+        //        Cancel Button
+        sellStockCancelBtn = findViewById(R.id.sell_cancel_button);
+        sellStockCancelBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StockMutualFundCODSellPage.this, MainPage.class);
+                startActivity(intent);
+
             }
         });
 
